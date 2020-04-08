@@ -1,28 +1,35 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Rendering;
+﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using SoccerForecast.Web.Data;
 using SoccerForecast.Web.Data.Entities;
+using SoccerForecast.Web.Helpers;
+using SoccerForecast.Web.Models;
+using System;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace SoccerForecast.Web.Controllers
 {
     public class TeamsController : Controller
     {
         private readonly DataContext _context;
+        private readonly IImageHelper _imageHelper;
+        private readonly IConverterHelper _converterHelper;
 
-        public TeamsController(DataContext context)
+        public TeamsController(
+            DataContext context,
+            IImageHelper imageHelper,
+            IConverterHelper converterHelper)
         {
             _context = context;
+            _imageHelper = imageHelper;
+            _converterHelper = converterHelper;
         }
 
         // GET: Teams
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Teams.ToListAsync());
+            return View(await _context.Teams.OrderBy(t => t.Name).ToListAsync());
         }
 
         // GET: Teams/Details/5
@@ -33,7 +40,7 @@ namespace SoccerForecast.Web.Controllers
                 return NotFound();
             }
 
-            var teamEntity = await _context.Teams
+            TeamEntity teamEntity = await _context.Teams
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (teamEntity == null)
             {
@@ -54,11 +61,20 @@ namespace SoccerForecast.Web.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create(TeamEntity teamEntity)
+        public async Task<IActionResult> Create(TeamViewModel model)
         {
             if (ModelState.IsValid)
             {
-                _context.Add(teamEntity);
+                string path = string.Empty;
+
+                if (model.LogoFile != null)
+                {
+                    path = await _imageHelper.UploadImageAsync(model.LogoFile, "Teams");
+                }
+
+                TeamEntity team = _converterHelper.ToTeamEntity(model, path, true);
+                _context.Add(team);
+
                 try
                 {
                     await _context.SaveChangesAsync();
@@ -68,17 +84,18 @@ namespace SoccerForecast.Web.Controllers
                 {
                     if (ex.InnerException.Message.Contains("duplicate"))
                     {
-                        ModelState.AddModelError(string.Empty, "Already there is a record with the same plaque.");
+                        ModelState.AddModelError(string.Empty, "Already there is a record with the same name.");
                     }
                     else
                     {
                         ModelState.AddModelError(string.Empty, ex.InnerException.Message);
                     }
                 }
-
             }
-            return View(teamEntity);
+
+            return View(model);
         }
+
 
         // GET: Teams/Edit/5
         public async Task<IActionResult> Edit(int? id)
@@ -88,12 +105,13 @@ namespace SoccerForecast.Web.Controllers
                 return NotFound();
             }
 
-            var teamEntity = await _context.Teams.FindAsync(id);
+            TeamEntity teamEntity = await _context.Teams.FindAsync(id);
             if (teamEntity == null)
             {
                 return NotFound();
             }
-            return View(teamEntity);
+            TeamViewModel model = _converterHelper.ToTeamViewModel(teamEntity);
+            return View(model);
         }
 
         // POST: Teams/Edit/5
@@ -101,16 +119,21 @@ namespace SoccerForecast.Web.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id,TeamEntity teamEntity)
+        public async Task<IActionResult> Edit(TeamViewModel model)
         {
-            if (id != teamEntity.Id)
-            {
-                return NotFound();
-            }
 
             if (ModelState.IsValid)
-            {                
-                _context.Update(teamEntity);
+            {
+                string path = model.LogoPath;
+
+                if (model.LogoFile != null)
+                {
+                    path = await _imageHelper.UploadImageAsync(model.LogoFile, "Teams");
+                }
+
+                TeamEntity team = _converterHelper.ToTeamEntity(model, path, false);
+                _context.Update(team);
+
                 try
                 {
                     await _context.SaveChangesAsync();
@@ -120,17 +143,18 @@ namespace SoccerForecast.Web.Controllers
                 {
                     if (ex.InnerException.Message.Contains("duplicate"))
                     {
-                        ModelState.AddModelError(string.Empty, $"Already exists the team: {teamEntity.Name}.");
+                        ModelState.AddModelError(string.Empty, "Already there is a record with the same name.");
                     }
                     else
                     {
                         ModelState.AddModelError(string.Empty, ex.InnerException.Message);
                     }
                 }
-
             }
-            return View(teamEntity);
+
+            return View(model);
         }
+
 
         // GET: Teams/Delete/5
         public async Task<IActionResult> Delete(int? id)
@@ -140,7 +164,7 @@ namespace SoccerForecast.Web.Controllers
                 return NotFound();
             }
 
-            var teamEntity = await _context.Teams
+            TeamEntity teamEntity = await _context.Teams
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (teamEntity == null)
             {
@@ -152,7 +176,7 @@ namespace SoccerForecast.Web.Controllers
             return RedirectToAction(nameof(Index));
         }
 
-      
+
         private bool TeamEntityExists(int id)
         {
             return _context.Teams.Any(e => e.Id == id);

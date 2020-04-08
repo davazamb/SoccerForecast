@@ -11,6 +11,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using SoccerForecast.Web.Data;
+using SoccerForecast.Web.Helpers;
 
 namespace SoccerForecast.Web
 {
@@ -39,6 +40,8 @@ namespace SoccerForecast.Web
             });
 
 
+            services.AddScoped<IImageHelper, ImageHelper>();
+            services.AddScoped<IConverterHelper, ConverterHelper>();
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
         }
