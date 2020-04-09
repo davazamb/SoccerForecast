@@ -5,13 +5,26 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Microsoft.AspNetCore.App" />
-    <PackageReference Include="Microsoft.AspNetCore.Razor.Design" Version="2.1.2" PrivateAssets="All" />
-    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="2.1.10" />
+    <None Include="Views\Tournaments\AddGroup.cshtml" />
+    <None Include="Views\Tournaments\AddGroupDetail.cshtml" />
+    <None Include="Views\Tournaments\AddMatch.cshtml" />
+    <None Include="Views\Tournaments\Create.cshtml" />
+    <None Include="Views\Tournaments\Details.cshtml" />
+    <None Include="Views\Tournaments\DetailsGroup.cshtml" />
+    <None Include="Views\Tournaments\Edit.cshtml" />
+    <None Include="Views\Tournaments\EditGroup.cshtml" />
+    <None Include="Views\Tournaments\EditGroupDetail.cshtml" />
+    <None Include="Views\Tournaments\Index.cshtml" />
+    <None Include="Views\Tournaments\_Group.cshtml" />
+    <None Include="Views\Tournaments\_GroupDetail.cshtml" />
+    <None Include="Views\Tournaments\_Match.cshtml" />
+    <None Include="Views\Tournaments\_Tournament.cshtml" />
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="wwwroot\images\Teams\" />
+    <PackageReference Include="Microsoft.AspNetCore.App" />
+    <PackageReference Include="Microsoft.AspNetCore.Razor.Design" Version="2.1.2" PrivateAssets="All" />
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="2.1.10" />
   </ItemGroup>
 
 </Project>
