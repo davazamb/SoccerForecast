@@ -30,6 +30,46 @@ namespace SoccerForecast.Web.Controllers
             _combosHelper = combosHelper;
         }
 
+        public async Task<IActionResult> DeleteGroupDetail(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            var groupDetailEntity = await _context.GroupDetails
+                .Include(gd => gd.Group)
+                .FirstOrDefaultAsync(gd => gd.Id == id);
+            if (groupDetailEntity == null)
+            {
+                return NotFound();
+            }
+
+            _context.GroupDetails.Remove(groupDetailEntity);
+            await _context.SaveChangesAsync();
+            return RedirectToAction($"{nameof(DetailsGroup)}/{groupDetailEntity.Group.Id}");
+        }
+
+        public async Task<IActionResult> DeleteMatch(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            var matchEntity = await _context.Matches
+                .Include(m => m.Group)
+                .FirstOrDefaultAsync(m => m.Id == id);
+            if (matchEntity == null)
+            {
+                return NotFound();
+            }
+
+            _context.Matches.Remove(matchEntity);
+            await _context.SaveChangesAsync();
+            return RedirectToAction($"{nameof(DetailsGroup)}/{matchEntity.Group.Id}");
+        }
+
         public async Task<IActionResult> EditMatch(int? id)
         {
             if (id == null)
