@@ -1,9 +1,10 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore;
 using SoccerForecast.Web.Data.Entities;
 
 namespace SoccerForecast.Web.Data
 {
-    public class DataContext : DbContext
+    public class DataContext : IdentityDbContext<UserEntity>
     {
         public DataContext(DbContextOptions<DataContext> options) : base(options)
         {
@@ -17,6 +18,8 @@ namespace SoccerForecast.Web.Data
         public DbSet<MatchEntity> Matches { get; set; }
 
         public DbSet<TournamentEntity> Tournaments { get; set; }
+        public DbSet<PredictionEntity> Predictions { get; set; }
+
 
         protected override void OnModelCreating(ModelBuilder builder)
         {

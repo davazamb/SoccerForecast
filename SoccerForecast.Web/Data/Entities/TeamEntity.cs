@@ -13,6 +13,6 @@ namespace SoccerForecast.Web.Data.Entities
         [Display(Name = "Logo")]
         public string LogoPath { get; set; }
 
-        public ICollection<GroupDetailEntity> GroupDetails { get; set; }
+        public ICollection<UserEntity> Users { get; set; }
     }
 }

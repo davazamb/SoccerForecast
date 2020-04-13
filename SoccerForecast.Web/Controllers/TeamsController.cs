@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using SoccerForecast.Web.Data;
 using SoccerForecast.Web.Data.Entities;
@@ -10,6 +11,7 @@ using System.Threading.Tasks;
 
 namespace SoccerForecast.Web.Controllers
 {
+    [Authorize(Roles = "Admin")]
     public class TeamsController : Controller
     {
         private readonly DataContext _context;

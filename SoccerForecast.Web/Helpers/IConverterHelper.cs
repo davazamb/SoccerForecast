@@ -1,4 +1,5 @@
-﻿using SoccerForecast.Web.Data.Entities;
+﻿using SoccerForecast.Common.Models;
+using SoccerForecast.Web.Data.Entities;
 using SoccerForecast.Web.Models;
 using System;
 using System.Collections.Generic;
@@ -25,6 +26,10 @@ namespace SoccerForecast.Web.Helpers
         Task<MatchEntity> ToMatchEntityAsync(MatchViewModel model, bool isNew);
 
         MatchViewModel ToMatchViewModel(MatchEntity matchEntity);
+
+        TournamentResponse ToTournamentResponse(TournamentEntity tournamentEntity);
+
+        List<TournamentResponse> ToTournamentResponse(List<TournamentEntity> tournamentEntities);
 
 
     }
