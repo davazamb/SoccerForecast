@@ -6,6 +6,7 @@
              prism:ViewModelLocator.AutowireViewModel="True"
              x:Class="SoccerForecast.Prism.Views.ClosedMatchesPage"
              IconImageSource="ic_playlist_add_check"
+             BackgroundColor="{StaticResource ColorBackgroud}"
              Title="{Binding Title}">
 
 

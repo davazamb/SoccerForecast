@@ -4,6 +4,7 @@
              xmlns:prism="http://prismlibrary.com"
              prism:ViewModelLocator.AutowireViewModel="True"
              x:Class="SoccerForecast.Prism.Views.MyForecastsPage"
+             BackgroundColor="{StaticResource ColorBackgroud}"
              Title="{Binding Title}">
   
 </ContentPage>

@@ -5,6 +5,7 @@
             prism:ViewModelLocator.AutowireViewModel="True"
         	xmlns:local="clr-namespace:SoccerForecast.Prism.Views"
             x:Class="SoccerForecast.Prism.Views.TournamentTabbedPage"
+             BackgroundColor="{StaticResource ColorBackgroud}"
         	Title="{Binding Title}">
 
     <TabbedPage.Children>
