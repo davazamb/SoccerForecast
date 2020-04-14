@@ -4,6 +4,7 @@ using SoccerForecast.Common.Helpers;
 using SoccerForecast.Common.Services;
 using SoccerForecast.Prism.ViewModels;
 using SoccerForecast.Prism.Views;
+using Syncfusion.Licensing;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -23,6 +24,7 @@ namespace SoccerForecast.Prism
 
         protected override async void OnInitialized()
         {
+            SyncfusionLicenseProvider.RegisterLicense("MjQwMzgxQDMxMzgyZTMxMmUzMGFCOXlIbUZjZ1JGazl4VnQ2Q2NUTjRBM2U1QzRhY1ZkejNleTFrQU5KM1k9");
             InitializeComponent();
             await NavigationService.NavigateAsync("/SoccerForecastMasterDetailPage/NavigationPage/TournamentsPage");
         }

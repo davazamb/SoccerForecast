@@ -1,4 +1,5 @@
 ﻿using Newtonsoft.Json;
+using Plugin.Connectivity;
 using SoccerForecast.Common.Models;
 using System;
 using System.Collections.Generic;
@@ -10,6 +11,16 @@ namespace SoccerForecast.Common.Services
 {
     public class ApiService : IApiService
     {
+        public async Task<bool> CheckConnectionAsync(string url)
+        {
+            if (!CrossConnectivity.Current.IsConnected)
+            {
+                return false;
+            }
+
+            return await CrossConnectivity.Current.IsRemoteReachable(url);
+        }
+
         public async Task<Response> GetListAsync<T>(
             string urlBase,
             string servicePrefix,
