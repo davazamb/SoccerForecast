@@ -1,5 +1,6 @@
 ﻿using Prism;
 using Prism.Ioc;
+using SoccerForecast.Common.Helpers;
 using SoccerForecast.Common.Services;
 using SoccerForecast.Prism.ViewModels;
 using SoccerForecast.Prism.Views;
@@ -30,8 +31,19 @@ namespace SoccerForecast.Prism
         protected override void RegisterTypes(IContainerRegistry containerRegistry)
         {
             containerRegistry.Register<IApiService, ApiService>();
+            containerRegistry.Register<ITransformHelper, TransformHelper>();
             containerRegistry.RegisterForNavigation<NavigationPage>();
             containerRegistry.RegisterForNavigation<TournamentsPage, TournamentsPageViewModel>();
+            containerRegistry.RegisterForNavigation<GroupsPage, GroupsPageViewModel>();
+            containerRegistry.RegisterForNavigation<MatchesPage, MatchesPageViewModel>();
+            containerRegistry.RegisterForNavigation<ClosedMatchesPage, ClosedMatchesPageViewModel>();
+            containerRegistry.RegisterForNavigation<TournamentTabbedPage, TournamentTabbedPageViewModel>();
+            containerRegistry.RegisterForNavigation<SoccerForecastMasterDetailPage, SoccerForecastMasterDetailPageViewModel>();
+            containerRegistry.RegisterForNavigation<SoccerForecastMasterDetailPage, SoccerForecastMasterDetailPageViewModel>();
+            containerRegistry.RegisterForNavigation<MyForecastsPage, MyForecastsPageViewModel>();
+            containerRegistry.RegisterForNavigation<MyPositionsPage, MyPositionsPageViewModel>();
+            containerRegistry.RegisterForNavigation<ModifyUserPage, ModifyUserPageViewModel>();
+            containerRegistry.RegisterForNavigation<LoginPage, LoginPageViewModel>();
         }
     }
 }

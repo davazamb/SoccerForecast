@@ -27,7 +27,7 @@ namespace SoccerForecast.Common.Models
 ? "https://soccerforecastweb.azurewebsites.net/images/noimage.png"
 : $"https://Soccerforecastweb.azurewebsites.net{LogoPath.Substring(1)}";
 
-        public ICollection<GroupResponse> Groups { get; set; }
+        public List<GroupResponse> Groups { get; set; }
     }
 
 }
