@@ -38,6 +38,10 @@ namespace SoccerForecast.Web.Data.Entities
         [Display(Name = "Logo")]
         public string LogoPath { get; set; }
 
+        public string LogoFullPath => string.IsNullOrEmpty(LogoPath)
+? "https://soccerforecastweb.azurewebsites.net/images/noimage.png"
+: $"https://Soccerforecastweb.azurewebsites.net{LogoPath.Substring(1)}";
+
         public ICollection<GroupEntity> Groups { get; set; }
 
     }

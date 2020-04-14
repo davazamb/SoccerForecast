@@ -1,5 +1,6 @@
 ﻿using Prism;
 using Prism.Ioc;
+using SoccerForecast.Common.Services;
 using SoccerForecast.Prism.ViewModels;
 using SoccerForecast.Prism.Views;
 using Xamarin.Forms;
@@ -23,13 +24,14 @@ namespace SoccerForecast.Prism
         {
             InitializeComponent();
 
-            await NavigationService.NavigateAsync("NavigationPage/MainPage");
+            await NavigationService.NavigateAsync("NavigationPage/TournamentsPage");
         }
 
         protected override void RegisterTypes(IContainerRegistry containerRegistry)
         {
+            containerRegistry.Register<IApiService, ApiService>();
             containerRegistry.RegisterForNavigation<NavigationPage>();
-            containerRegistry.RegisterForNavigation<MainPage, MainPageViewModel>();
+            containerRegistry.RegisterForNavigation<TournamentsPage, TournamentsPageViewModel>();
         }
     }
 }

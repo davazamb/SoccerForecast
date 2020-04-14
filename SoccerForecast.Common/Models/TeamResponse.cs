@@ -11,6 +11,10 @@ namespace SoccerForecast.Common.Models
         public string Name { get; set; }
 
         public string LogoPath { get; set; }
+
+        public string LogoFullPath => string.IsNullOrEmpty(LogoPath)
+? "https://soccerforecastweb.azurewebsites.net/images/noimage.png"
+: $"https://Soccerforecastweb.azurewebsites.net{LogoPath.Substring(1)}";
     }
 
 }
