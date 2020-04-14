@@ -211,7 +211,22 @@
     <BundleResource Include="Resources\ic_playlist_add_check.png" />
   </ItemGroup>
   <ItemGroup>
-    <BundleResource Include="Resources\soccerforecast.png" />
+    <BundleResource Include="Resources\login.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\medal.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\tournament.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\user.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\forecast.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\soccerForecast.png" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
 </Project>

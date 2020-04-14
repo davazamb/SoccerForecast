@@ -24,8 +24,7 @@ namespace SoccerForecast.Prism
         protected override async void OnInitialized()
         {
             InitializeComponent();
-
-            await NavigationService.NavigateAsync("NavigationPage/TournamentsPage");
+            await NavigationService.NavigateAsync("/SoccerForecastMasterDetailPage/NavigationPage/TournamentsPage");
         }
 
         protected override void RegisterTypes(IContainerRegistry containerRegistry)
@@ -38,7 +37,6 @@ namespace SoccerForecast.Prism
             containerRegistry.RegisterForNavigation<MatchesPage, MatchesPageViewModel>();
             containerRegistry.RegisterForNavigation<ClosedMatchesPage, ClosedMatchesPageViewModel>();
             containerRegistry.RegisterForNavigation<TournamentTabbedPage, TournamentTabbedPageViewModel>();
-            containerRegistry.RegisterForNavigation<SoccerForecastMasterDetailPage, SoccerForecastMasterDetailPageViewModel>();
             containerRegistry.RegisterForNavigation<SoccerForecastMasterDetailPage, SoccerForecastMasterDetailPageViewModel>();
             containerRegistry.RegisterForNavigation<MyForecastsPage, MyForecastsPageViewModel>();
             containerRegistry.RegisterForNavigation<MyPositionsPage, MyPositionsPageViewModel>();

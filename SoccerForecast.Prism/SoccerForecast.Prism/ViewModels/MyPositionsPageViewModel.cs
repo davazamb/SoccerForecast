@@ -1,16 +1,18 @@
 ﻿using Prism.Commands;
 using Prism.Mvvm;
+using Prism.Navigation;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 
 namespace SoccerForecast.Prism.ViewModels
 {
-    public class MyPositionsPageViewModel : BindableBase
+    public class MyPositionsPageViewModel : ViewModelBase
     {
-        public MyPositionsPageViewModel()
+        public MyPositionsPageViewModel(INavigationService navigationService) : base(navigationService)
         {
-
+            Title = "My Positions";
         }
     }
+
 }

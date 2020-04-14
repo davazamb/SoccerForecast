@@ -9,11 +9,11 @@ using System.Linq;
 
 namespace SoccerForecast.Prism.ViewModels
 {
-    public class SoccerMasterDetailPageViewModel : ViewModelBase
+    public class SoccerForecastMasterDetailPageViewModel : ViewModelBase
     {
         private readonly INavigationService _navigationService;
 
-        public SoccerMasterDetailPageViewModel(INavigationService navigationService) : base(navigationService)
+        public SoccerForecastMasterDetailPageViewModel(INavigationService navigationService) : base(navigationService)
         {
             _navigationService = navigationService;
             LoadMenus();
