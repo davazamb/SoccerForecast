@@ -11,8 +11,7 @@ namespace SoccerForecast.Web.Helpers
 {
     public interface IUserHelper
     {
-        Task<UserEntity> GetUserByEmailAsync(string email);
-
+        Task<UserEntity> GetUserAsync(string email);
         Task<IdentityResult> AddUserAsync(UserEntity user, string password);
 
         Task CheckRoleAsync(string roleName);
@@ -24,6 +23,10 @@ namespace SoccerForecast.Web.Helpers
 
         Task LogoutAsync();
         Task<UserEntity> AddUserAsync(AddUserViewModel model, string path, UserType userType);
+        Task<IdentityResult> ChangePasswordAsync(UserEntity user, string oldPassword, string newPassword);
+
+        Task<IdentityResult> UpdateUserAsync(UserEntity user);
+
     }
 
 }
