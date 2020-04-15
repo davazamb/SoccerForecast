@@ -33,6 +33,10 @@ namespace SoccerForecast.Web.Helpers
         {
             await _signInManager.SignOutAsync();
         }
+        public async Task<SignInResult> ValidatePasswordAsync(UserEntity user, string password)
+        {
+            return await _signInManager.CheckPasswordSignInAsync(user, password, false);
+        }
 
         public async Task<SignInResult> LoginAsync(LoginViewModel model)
         {

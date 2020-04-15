@@ -26,6 +26,7 @@ namespace SoccerForecast.Web.Helpers
         Task<IdentityResult> ChangePasswordAsync(UserEntity user, string oldPassword, string newPassword);
 
         Task<IdentityResult> UpdateUserAsync(UserEntity user);
+        Task<SignInResult> ValidatePasswordAsync(UserEntity user, string password);
 
     }
 
