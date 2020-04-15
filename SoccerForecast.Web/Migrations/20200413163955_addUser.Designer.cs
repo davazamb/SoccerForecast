@@ -212,7 +212,7 @@ namespace SoccerForecast.Web.Migrations
                     b.ToTable("Matches");
                 });
 
-            modelBuilder.Entity("SoccerForecast.Web.Data.Entities.PredictionEntity", b =>
+            modelBuilder.Entity("SoccerForecast.Web.Data.Entities.ForecastEntity", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -234,7 +234,7 @@ namespace SoccerForecast.Web.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("Predictions");
+                    b.ToTable("Forecasts");
                 });
 
             modelBuilder.Entity("SoccerForecast.Web.Data.Entities.TeamEntity", b =>
@@ -432,14 +432,14 @@ namespace SoccerForecast.Web.Migrations
                         .HasForeignKey("VisitorId");
                 });
 
-            modelBuilder.Entity("SoccerForecast.Web.Data.Entities.PredictionEntity", b =>
+            modelBuilder.Entity("SoccerForecast.Web.Data.Entities.ForecastEntity", b =>
                 {
                     b.HasOne("SoccerForecast.Web.Data.Entities.MatchEntity", "Match")
-                        .WithMany("Predictions")
+                        .WithMany("Forecasts")
                         .HasForeignKey("MatchId");
 
                     b.HasOne("SoccerForecast.Web.Data.Entities.UserEntity", "User")
-                        .WithMany("Predictions")
+                        .WithMany("Forecasts")
                         .HasForeignKey("UserId");
                 });
 

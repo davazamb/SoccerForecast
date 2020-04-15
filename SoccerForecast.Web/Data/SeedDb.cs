@@ -40,13 +40,13 @@ namespace SoccerForecast.Web.Data
 
             await CheckUserAsync("1010", "David", "Zambrano", "david.zambrano10@gmail.com", "817", "El Molino", UserType.Admin);
             await CheckUserAsync("2020", "Ali", "Zambrano", "davazamb10@hotmail.com", "817", "El Molino", UserType.User);
-            await CheckPreditionsAsync();
+            await CheckForecastsAsync();
 
         }
 
-        private async Task CheckPreditionsAsync()
+        private async Task CheckForecastsAsync()
         {
-            if (!_context.Predictions.Any())
+            if (!_context.Forecasts.Any())
             {
                 foreach (var user in _context.Users)
                 {
@@ -65,7 +65,7 @@ namespace SoccerForecast.Web.Data
             var random = new Random();
             foreach (var match in _context.Matches)
             {
-                _context.Predictions.Add(new PredictionEntity
+                _context.Forecasts.Add(new ForecastEntity
                 {
                     GoalsLocal = random.Next(0, 5),
                     GoalsVisitor = random.Next(0, 5),

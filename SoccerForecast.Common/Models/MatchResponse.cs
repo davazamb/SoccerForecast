@@ -22,7 +22,7 @@ namespace SoccerForecast.Common.Models
 
         public bool IsClosed { get; set; }
 
-        public ICollection<PredictionResponse> Predictions { get; set; }
+        public ICollection<ForecastResponse> Forecasts { get; set; }
     }
 
 }

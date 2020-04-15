@@ -20,6 +20,31 @@ namespace SoccerForecast.Web.Helpers
             _context = context;
             _combosHelper = combosHelper;
         }
+        public ForecastResponse ToPredictionResponse(ForecastEntity ForecastEntity)
+        {
+            return new ForecastResponse
+            {
+                GoalsLocal = ForecastEntity.GoalsLocal,
+                GoalsVisitor = ForecastEntity.GoalsVisitor,
+                Id = ForecastEntity.Id,
+                Match = ToMatchResponse(ForecastEntity.Match),
+                Points = ForecastEntity.Points
+            };
+        }
+
+        public MatchResponse ToMatchResponse(MatchEntity matchEntity)
+        {
+            return new MatchResponse
+            {
+                Date = matchEntity.Date,
+                GoalsLocal = matchEntity.GoalsLocal,
+                GoalsVisitor = matchEntity.GoalsVisitor,
+                Id = matchEntity.Id,
+                IsClosed = matchEntity.IsClosed,
+                Local = ToTeamResponse(matchEntity.Local),
+                Visitor = ToTeamResponse(matchEntity.Visitor)
+            };
+        }
 
         public async Task<GroupEntity> ToGroupEntityAsync(GroupViewModel model, bool isNew)
         {
@@ -196,7 +221,7 @@ namespace SoccerForecast.Web.Helpers
                         IsClosed = m.IsClosed,
                         Local = ToTeamResponse(m.Local),
                         Visitor = ToTeamResponse(m.Visitor),
-                        Predictions = m.Predictions?.Select(p => new PredictionResponse
+                        Forecasts = m.Forecasts?.Select(p => new ForecastResponse
                         {
                             GoalsLocal = p.GoalsLocal,
                             GoalsVisitor = p.GoalsVisitor,

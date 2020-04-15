@@ -179,7 +179,7 @@ namespace SoccerForecast.Web.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Predictions",
+                name: "Forecasts",
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
@@ -192,15 +192,15 @@ namespace SoccerForecast.Web.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Predictions", x => x.Id);
+                    table.PrimaryKey("PK_Forecasts", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Predictions_Matches_MatchId",
+                        name: "FK_Forecasts_Matches_MatchId",
                         column: x => x.MatchId,
                         principalTable: "Matches",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
-                        name: "FK_Predictions_AspNetUsers_UserId",
+                        name: "FK_Forecasts_AspNetUsers_UserId",
                         column: x => x.UserId,
                         principalTable: "AspNetUsers",
                         principalColumn: "Id",
@@ -252,13 +252,13 @@ namespace SoccerForecast.Web.Migrations
                 column: "TeamId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Predictions_MatchId",
-                table: "Predictions",
+                name: "IX_Forecasts_MatchId",
+                table: "Forecasts",
                 column: "MatchId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Predictions_UserId",
-                table: "Predictions",
+                name: "IX_Forecasts_UserId",
+                table: "Forecasts",
                 column: "UserId");
         }
 
@@ -280,7 +280,7 @@ namespace SoccerForecast.Web.Migrations
                 name: "AspNetUserTokens");
 
             migrationBuilder.DropTable(
-                name: "Predictions");
+                name: "Forecasts");
 
             migrationBuilder.DropTable(
                 name: "AspNetRoles");

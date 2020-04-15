@@ -4,7 +4,7 @@ using System.Text;
 
 namespace SoccerForecast.Common.Models
 {
-    public class PredictionResponse
+    public class ForecastResponse
     {
         public int Id { get; set; }
 

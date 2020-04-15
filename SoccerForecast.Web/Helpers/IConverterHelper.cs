@@ -31,6 +31,9 @@ namespace SoccerForecast.Web.Helpers
 
         List<TournamentResponse> ToTournamentResponse(List<TournamentEntity> tournamentEntities);
 
+        ForecastResponse ToPredictionResponse(ForecastEntity ForecastEntity);
+
+        MatchResponse ToMatchResponse(MatchEntity matchEntity);
 
     }
 }

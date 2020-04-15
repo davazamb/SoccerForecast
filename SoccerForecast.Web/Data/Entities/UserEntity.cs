@@ -40,7 +40,7 @@ namespace SoccerForecast.Web.Data.Entities
         public string FullName => $"{FirstName} {LastName}";
         [Display(Name = "User")]
         public string FullNameWithDocument => $"{FirstName} {LastName} - {Document}";
-        public ICollection<PredictionEntity> Predictions { get; set; }
+        public ICollection<ForecastEntity> Forecasts { get; set; }
 
     }
 

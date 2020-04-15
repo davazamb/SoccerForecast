@@ -18,7 +18,7 @@ namespace SoccerForecast.Web.Data
         public DbSet<MatchEntity> Matches { get; set; }
 
         public DbSet<TournamentEntity> Tournaments { get; set; }
-        public DbSet<PredictionEntity> Predictions { get; set; }
+        public DbSet<ForecastEntity> Forecasts { get; set; }
 
 
         protected override void OnModelCreating(ModelBuilder builder)

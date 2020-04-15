@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace SoccerForecast.Web.Data.Entities
 {
-    public class PredictionEntity
+    public class ForecastEntity
     {
         public int Id { get; set; }
 
