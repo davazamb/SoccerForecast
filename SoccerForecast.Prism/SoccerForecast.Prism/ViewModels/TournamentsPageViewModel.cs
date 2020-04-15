@@ -47,7 +47,7 @@ namespace SoccerForecast.Prism.ViewModels
             if (!connection)
             {
                 IsRunning = false;
-                await App.Current.MainPage.DisplayAlert("Error", "Check the internet connection.", "Accept");
+                await App.Current.MainPage.DisplayAlert("Error connection", "Check the internet connection.", "Accept");
                 return;
             }
 
@@ -61,7 +61,7 @@ namespace SoccerForecast.Prism.ViewModels
             if (!response.IsSuccess)
             {
                 await App.Current.MainPage.DisplayAlert(
-                    "Error",
+                    "Error response",
                     response.Message,
                     "Accept");
                 return;
