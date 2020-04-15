@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Identity;
+using SoccerForecast.Common.Enums;
 using SoccerForecast.Web.Data.Entities;
 using SoccerForecast.Web.Models;
 using System;
@@ -22,7 +23,7 @@ namespace SoccerForecast.Web.Helpers
         Task<SignInResult> LoginAsync(LoginViewModel model);
 
         Task LogoutAsync();
-
+        Task<UserEntity> AddUserAsync(AddUserViewModel model, string path, UserType userType);
     }
 
 }
