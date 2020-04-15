@@ -71,6 +71,7 @@
     <PackageReference Include="Prism.DryIoc.Forms" Version="7.2.0.1422" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Implementations\Localize.cs" />
     <Compile Include="MainActivity.cs" />
     <Compile Include="Resources\Resource.Designer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -97,6 +98,10 @@
     </AndroidResource>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\SoccerForecast.Common\SoccerForecast.Common.csproj">
+      <Project>{DAD25B1E-C21A-41F6-AC73-E943C1F8F731}</Project>
+      <Name>SoccerForecast.Common</Name>
+    </ProjectReference>
     <ProjectReference Include="..\SoccerForecast.Prism\SoccerForecast.Prism.csproj">
       <Project>{A682884C-CB44-4A89-B752-27BB634E0ABE}</Project>
       <Name>SoccerForecast.Prism</Name>
@@ -135,7 +140,7 @@
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
   <ProjectExtensions>
     <VisualStudio>
-      <UserProperties XamarinHotReloadUnhandledDeviceExceptionSoccerForecastPrismAndroidHideInfoBar="True" XamarinHotReloadDebuggerTimeoutExceptionSoccerForecastPrismAndroidHideInfoBar="True" />
+      <UserProperties XamarinHotReloadDebuggerTimeoutExceptionSoccerForecastPrismAndroidHideInfoBar="True" XamarinHotReloadUnhandledDeviceExceptionSoccerForecastPrismAndroidHideInfoBar="True" />
     </VisualStudio>
   </ProjectExtensions>
 </Project>

@@ -2,6 +2,7 @@
 using Prism.Mvvm;
 using Prism.Navigation;
 using SoccerForecast.Common.Models;
+using SoccerForecast.Prism.Helpers;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,7 +15,7 @@ namespace SoccerForecast.Prism.ViewModels
 
         public TournamentTabbedPageViewModel(INavigationService navigationService) : base(navigationService)
         {
-            Title = "Tournament";
+            Title = Languages.SoccerForescast;
         }
 
         public override void OnNavigatedTo(INavigationParameters parameters)

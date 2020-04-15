@@ -3,6 +3,7 @@ using Prism.Mvvm;
 using Prism.Navigation;
 using SoccerForecast.Common.Helpers;
 using SoccerForecast.Common.Models;
+using SoccerForecast.Prism.Helpers;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -20,7 +21,7 @@ namespace SoccerForecast.Prism.ViewModels
             ITransformHelper transformHelper) : base(navigationService)
         {
             _transformHelper = transformHelper;
-            Title = "Groups";
+            Title = Languages.Groups;
         }
 
         public List<Group> Groups

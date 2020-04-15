@@ -4,6 +4,7 @@ using Prism.Mvvm;
 using Prism.Navigation;
 using SoccerForecast.Common.Helpers;
 using SoccerForecast.Common.Models;
+using SoccerForecast.Prism.Helpers;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,7 +18,8 @@ namespace SoccerForecast.Prism.ViewModels
 
         public MatchesPageViewModel(INavigationService navigationService) : base(navigationService)
         {
-            Title = "Open";
+
+            Title = Languages.Open;
             LoadMatches();
         }
 

@@ -3,6 +3,7 @@ using Prism.Mvvm;
 using Prism.Navigation;
 using SoccerForecast.Common.Models;
 using SoccerForecast.Common.Services;
+using SoccerForecast.Prism.Helpers;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -22,7 +23,7 @@ namespace SoccerForecast.Prism.ViewModels
         {
             _navigationService = navigationService;
             _apiService = apiService;
-            Title = "Tournaments";
+            Title = Languages.Tournaments;
             LoadTournamentsAsync();
         }
 
@@ -47,8 +48,7 @@ namespace SoccerForecast.Prism.ViewModels
             if (!connection)
             {
                 IsRunning = false;
-                await App.Current.MainPage.DisplayAlert("Error connection", "Check the internet connection.", "Accept");
-                return;
+                await App.Current.MainPage.DisplayAlert(Languages.Error, Languages.ConnectionError, Languages.Accept);
             }
 
             Response response = await _apiService.GetListAsync<TournamentResponse>(
@@ -60,11 +60,7 @@ namespace SoccerForecast.Prism.ViewModels
 
             if (!response.IsSuccess)
             {
-                await App.Current.MainPage.DisplayAlert(
-                    "Error response",
-                    response.Message,
-                    "Accept");
-                return;
+                await App.Current.MainPage.DisplayAlert(Languages.Error, response.Message, Languages.Accept);              
             }
 
             List<TournamentResponse> list = (List<TournamentResponse>)response.Result;

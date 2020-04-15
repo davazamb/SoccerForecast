@@ -1,6 +1,7 @@
 ﻿using Prism.Commands;
 using Prism.Mvvm;
 using Prism.Navigation;
+using SoccerForecast.Prism.Helpers;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,7 +12,8 @@ namespace SoccerForecast.Prism.ViewModels
     {
         public MyPositionsPageViewModel(INavigationService navigationService) : base(navigationService)
         {
-            Title = "My Positions";
+
+            Title = Languages.MyPositions;
         }
     }
 

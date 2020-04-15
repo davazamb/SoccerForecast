@@ -2,6 +2,7 @@
 using Prism.Mvvm;
 using Prism.Navigation;
 using SoccerForecast.Common.Models;
+using SoccerForecast.Prism.Helpers;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -29,31 +30,31 @@ namespace SoccerForecast.Prism.ViewModels
                 {
                     Icon = "tournament",
                     PageName = "TournamentsPage",
-                    Title = "Tournaments"
+                    Title = Languages.Tournaments
                 },
                 new Menu
                 {
                     Icon = "forecast",
                     PageName = "MyForecastsPage",
-                    Title = "My Forecast"
+                    Title = Languages.MyForecasts
                 },
                 new Menu
                 {
                     Icon = "medal",
                     PageName = "MyPositionsPage",
-                    Title = "My Positions"
+                    Title = Languages.MyPositions
                 },
                 new Menu
                 {
                     Icon = "user",
                     PageName = "ModifyUserPage",
-                    Title = "Modify User"
+                    Title = Languages.ModifyUser
                 },
                 new Menu
                 {
                     Icon = "login",
                     PageName = "LoginPage",
-                    Title = "Login"
+                    Title = Languages.Login
                 }
             };
 
