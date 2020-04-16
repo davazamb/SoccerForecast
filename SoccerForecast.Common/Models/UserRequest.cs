@@ -28,6 +28,7 @@ namespace SoccerForecast.Common.Models
         [Required]
         [StringLength(20, MinimumLength = 6)]
         public string Password { get; set; }
+        public string PasswordConfirm { get; set; }
 
         public int TeamId { get; set; }
 

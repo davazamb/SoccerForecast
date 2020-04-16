@@ -1,5 +1,6 @@
 ﻿using Prism.Commands;
 using Prism.Navigation;
+using SoccerForecast.Common.Helpers;
 using SoccerForecast.Common.Models;
 using System;
 using System.Collections.Generic;
@@ -21,6 +22,13 @@ namespace SoccerForecast.Prism.ViewModels
 
         private async void SelectMenuAsync()
         {
+            if (PageName == "LoginPage" && Settings.IsLogin)
+            {
+                Settings.IsLogin = false;
+                Settings.User = null;
+                Settings.Token = null;
+            }
+
             await _navigationService.NavigateAsync($"/SoccerForecastMasterDetailPage/NavigationPage/{PageName}");
         }
     }

@@ -32,6 +32,7 @@ namespace SoccerForecast.Prism
         protected override void RegisterTypes(IContainerRegistry containerRegistry)
         {
             containerRegistry.Register<IApiService, ApiService>();
+            containerRegistry.Register<IRegexHelper, RegexHelper>();
             containerRegistry.Register<ITransformHelper, TransformHelper>();
             containerRegistry.RegisterForNavigation<NavigationPage>();
             containerRegistry.RegisterForNavigation<TournamentsPage, TournamentsPageViewModel>();
@@ -44,6 +45,7 @@ namespace SoccerForecast.Prism
             containerRegistry.RegisterForNavigation<MyPositionsPage, MyPositionsPageViewModel>();
             containerRegistry.RegisterForNavigation<ModifyUserPage, ModifyUserPageViewModel>();
             containerRegistry.RegisterForNavigation<LoginPage, LoginPageViewModel>();
+            containerRegistry.RegisterForNavigation<RegisterPage, RegisterPageViewModel>();
         }
     }
 }

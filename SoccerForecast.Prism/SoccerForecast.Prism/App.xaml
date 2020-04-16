@@ -10,6 +10,8 @@
         <ResourceDictionary>
 
             <x:String x:Key="UrlAPI">https://soccerforecastweb.azurewebsites.net/</x:String>
+            <x:String x:Key="UrlNoImage">https://soccerforecastweb.azurewebsites.net/images/noimage.png</x:String>
+
 
             <DataTemplate x:Key="MatchTemplate">
                 <StackLayout>
@@ -83,9 +85,18 @@
             </Style>
 
             <Style x:Key="DangerButton" TargetType="Button">
-                <Setter Property="BackgroundColor" Value="{StaticResource ColorDanger}" />
+                <Setter Property="BackgroundColor" Value="{StaticResource ColorFont}" />
+                <Setter Property="TextColor" Value="{StaticResource ColorDanger}" />
+
             </Style>
 
+            <Style TargetType="Entry">
+                <Setter Property="BackgroundColor" Value="{StaticResource ColorFontInverse}" />
+            </Style>
+
+            <Style TargetType="Picker">
+                <Setter Property="BackgroundColor" Value="{StaticResource ColorFontInverse}" />
+            </Style>
 
 
         </ResourceDictionary>
