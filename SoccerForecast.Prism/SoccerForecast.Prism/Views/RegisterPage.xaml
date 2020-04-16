@@ -12,7 +12,7 @@
              BackgroundColor="{StaticResource ColorBackgroud}"
              Title="{Binding Title}">
 
-    <AbsoluteLayout>
+        <AbsoluteLayout>
         <StackLayout AbsoluteLayout.LayoutBounds="0,0,1,1"
                      AbsoluteLayout.LayoutFlags="All"
                      Padding="5">
@@ -28,6 +28,10 @@
                         <ffimageloading:CachedImage.Transformations>
                             <fftransformations:CircleTransformation />
                         </ffimageloading:CachedImage.Transformations>
+                        <ffimageloading:CachedImage.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding ChangeImageCommand}"/>
+                        </ffimageloading:CachedImage.GestureRecognizers>
+
                     </ffimageloading:CachedImage>
 
                     <Grid>

@@ -93,6 +93,64 @@ namespace SoccerForecast.Prism.Helpers
         public static string PasswordConfirmPlaceHolder => Resource.PasswordConfirmPlaceHolder;
         public static string Ok => Resource.Ok;
 
+        public static string PictureSource => Resource.PictureSource;
+
+        public static string Cancel => Resource.Cancel;
+
+        public static string FromCamera => Resource.FromCamera;
+
+        public static string FromGallery => Resource.FromGallery;
+
+        public static string PasswordRecover => Resource.PasswordRecover;
+
+
+        public static string Real => Resource.Real;
+
+        public static string Forecast => Resource.Forecast;
+
+        public static string Points => Resource.Points;
+
+
+        public static string MatchAlreadyStarts => Resource.MatchAlreadyStarts;
+
+        public static string LocalGoalsError => Resource.LocalGoalsError;
+
+        public static string VisitorGoalsError => Resource.VisitorGoalsError;
+
+        public static string Update => Resource.Update;
+
+        public static string SelectTournament => Resource.SelectTournament;
+
+        public static string ForecastsFor => Resource.ForecastsFor;
+
+        public static string ConfirmNewPassword => Resource.ConfirmNewPassword;
+
+        public static string ConfirmNewPasswordError => Resource.ConfirmNewPasswordError;
+
+        public static string ConfirmNewPasswordError2 => Resource.ConfirmNewPasswordError2;
+
+        public static string ConfirmNewPasswordPlaceHolder => Resource.ConfirmNewPasswordPlaceHolder;
+
+        public static string CurrentPassword => Resource.CurrentPassword;
+
+        public static string CurrentPasswordError => Resource.CurrentPasswordError;
+
+        public static string CurrentPasswordPlaceHolder => Resource.CurrentPasswordPlaceHolder;
+
+        public static string NewPassword => Resource.NewPassword;
+
+        public static string NewPasswordError => Resource.NewPasswordError;
+
+        public static string NewPasswordPlaceHolder => Resource.NewPasswordPlaceHolder;
+
+        public static string UserUpdated => Resource.UserUpdated;
+
+        public static string Save => Resource.Save;
+
+        public static string ChangePassword => Resource.ChangePassword;
+
+        public static string ForgotPassword => Resource.ForgotPassword;
+
     }
 
 }

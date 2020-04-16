@@ -273,4 +273,92 @@
   <data name="Ok" xml:space="preserve">
     <value>Ok</value>
   </data>
+
+	<data name="PictureSource" xml:space="preserve">
+    <value>Where do you want to take the picture?</value>
+  </data>
+	<data name="Cancel" xml:space="preserve">
+    <value>Cancel</value>
+  </data>
+	<data name="FromCamera" xml:space="preserve">
+    <value>From camera </value>
+  </data>
+	<data name="FromGallery" xml:space="preserve">
+    <value>From gallery</value>
+  </data>
+	<data name="PasswordRecover" xml:space="preserve">
+    <value>Password Recover</value>
+  </data>
+	<data name="ForgotPassword" xml:space="preserve">
+    <value>Forgot your password?</value>
+  </data>
+	<data name="Save" xml:space="preserve">
+    <value>Save </value>
+  </data>
+	<data name="ChangePassword" xml:space="preserve">
+    <value>Change Password</value>
+  </data>
+	<data name="UserUpdated" xml:space="preserve">
+    <value>The user was updated sucessfull</value>
+  </data>
+	<data name="ConfirmNewPassword" xml:space="preserve">
+    <value>Confirm new password</value>
+  </data>
+	<data name="ConfirmNewPasswordError" xml:space="preserve">
+    <value>You must enter a confirmation for new password.</value>
+  </data>
+	<data name="ConfirmNewPasswordError2" xml:space="preserve">
+    <value>The confirmation and new password does not match.</value>
+  </data>
+	<data name="ConfirmNewPasswordPlaceHolder" xml:space="preserve">
+    <value>Enter the password confirmation...</value>
+  </data>
+	<data name="CurrentPassword" xml:space="preserve">
+    <value>Current password</value>
+  </data>
+	<data name="CurrentPasswordError" xml:space="preserve">
+    <value>You must enter your current password.</value>
+  </data>
+	<data name="CurrentPasswordPlaceHolder" xml:space="preserve">
+    <value>Enter your current password...</value>
+  </data>
+	<data name="NewPassword" xml:space="preserve">
+    <value>New password</value>
+  </data>
+	<data name="NewPasswordError" xml:space="preserve">
+    <value>You must enter a new password.</value>
+  </data>
+	<data name="NewPasswordPlaceHolder" xml:space="preserve">
+    <value>Enter the new password.</value>
+  </data>
+	<data name="SelectTournament" xml:space="preserve">
+    <value>Select a tournament</value>
+  </data>
+	<data name="ForecastsFor" xml:space="preserve">
+    <value>Forecasts for</value>
+  </data>
+	<data name="IsUpdated" xml:space="preserve">
+    <value>Is Updated?</value>
+  </data>
+	<data name="Update" xml:space="preserve">
+    <value>Update</value>
+  </data>
+	<data name="LocalGoalsError" xml:space="preserve">
+    <value>You must enter the local goals.</value>
+  </data>
+	<data name="VisitorGoalsError" xml:space="preserve">
+    <value>You must enter the visitor goals.</value>
+  </data>
+	<data name="MatchAlreadyStarts" xml:space="preserve">
+    <value>You cannot record the forecast, because the match has already started.</value>
+  </data>
+	<data name="Real" xml:space="preserve">
+    <value>Real</value>
+  </data>
+	<data name="Points" xml:space="preserve">
+    <value>Points</value>
+  </data>
+	<data name="Forecast" xml:space="preserve">
+    <value>Forecast</value>
+  </data>
 </root>
