@@ -23,6 +23,11 @@ namespace SoccerForecast.Common.Models
 
         public string PicturePath { get; set; }
 
+        public string PictureFullPath => string.IsNullOrEmpty(PicturePath)
+    ? "https://Soccerforecastweb.azurewebsites.net//images/noimage.png"
+    : $"https://Soccerforecastweb.azurewebsites.net{PicturePath.Substring(1)}";
+
+
         public UserType UserType { get; set; }
 
         public TeamResponse Team { get; set; }
@@ -30,6 +35,7 @@ namespace SoccerForecast.Common.Models
         public string FullName => $"{FirstName} {LastName}";
 
         public string FullNameWithDocument => $"{FirstName} {LastName} - {Document}";
+
     }
 
 }

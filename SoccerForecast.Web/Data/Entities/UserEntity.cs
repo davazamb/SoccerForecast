@@ -41,6 +41,7 @@ namespace SoccerForecast.Web.Data.Entities
         [Display(Name = "User")]
         public string FullNameWithDocument => $"{FirstName} {LastName} - {Document}";
         public ICollection<ForecastEntity> Forecasts { get; set; }
+        public int Points => Forecasts == null ? 0 : Forecasts.Sum(p => p.Points);
 
     }
 

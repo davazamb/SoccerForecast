@@ -44,13 +44,13 @@ namespace SoccerForecast.Web.Controllers
 
         }
 
-        public IActionResult RecoverPassword()
+        public IActionResult RecoverPasswordAccount()
         {
             return View();
         }
 
         [HttpPost]
-        public async Task<IActionResult> RecoverPassword(RecoverPasswordViewModel model)
+        public async Task<IActionResult> RecoverPasswordAccount(RecoverPasswordViewModel model)
         {
             if (ModelState.IsValid)
             {

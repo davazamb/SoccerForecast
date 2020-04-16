@@ -22,12 +22,163 @@ namespace SoccerForecast.Web.Controllers.API
     {
         private readonly DataContext _context;
         private readonly IConverterHelper _converterHelper;
+        private readonly IUserHelper _userHelper;
 
-        public ForecastsController(DataContext context, IConverterHelper converterHelper)
+        public ForecastsController(DataContext context,
+            IConverterHelper converterHelper,
+            IUserHelper userHelper)
         {
             _context = context;
             _converterHelper = converterHelper;
+            _userHelper = userHelper;
         }
+
+        [HttpGet]
+        public async Task<IActionResult> GetPositions()
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            List<UserEntity> users = await _context.Users
+                .Include(u => u.Team)
+                .Include(u => u.Forecasts)
+                .ToListAsync();
+            List<PositionResponse> positionResponses = users.Select(u => new PositionResponse
+            {
+                Points = u.Points,
+                UserResponse = _converterHelper.ToUserResponse(u)
+
+            }).ToList();
+
+            List<PositionResponse> list = positionResponses.OrderByDescending(pr => pr.Points).ToList();
+            int i = 1;
+            foreach (var item in list)
+            {
+                item.Ranking = i;
+                i++;
+            }
+
+            return Ok(list);
+        }
+
+
+        [HttpGet("{id}")]
+        public async Task<IActionResult> GetPositionsByTournament([FromRoute] int id)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            TournamentEntity tournament = await _context.Tournaments
+                .Include(t => t.Groups)
+                .ThenInclude(g => g.Matches)
+                .ThenInclude(m => m.Forecasts)
+                .ThenInclude(p => p.User)
+                .ThenInclude(u => u.Team)
+                .FirstOrDefaultAsync(t => t.Id == id);
+            if (tournament == null)
+            {
+                return BadRequest("Tournament doesn't exists.");
+            }
+
+            List<PositionResponse> positionResponses = new List<PositionResponse>();
+            foreach (GroupEntity groupEntity in tournament.Groups)
+            {
+                foreach (MatchEntity matchEntity in groupEntity.Matches)
+                {
+                    foreach (ForecastEntity forecastEntity in matchEntity.Forecasts)
+                    {
+                        PositionResponse positionResponse = positionResponses.FirstOrDefault(pr => pr.UserResponse.Id == forecastEntity.User.Id);
+                        if (positionResponse == null)
+                        {
+                            positionResponses.Add(new PositionResponse
+                            {
+                                Points = forecastEntity.Points,
+                                UserResponse = _converterHelper.ToUserResponse(forecastEntity.User),
+                            });
+                        }
+                        else
+                        {
+                            positionResponse.Points += forecastEntity.Points;
+                        }
+                    }
+                }
+            }
+
+            List<PositionResponse> list = positionResponses.OrderByDescending(pr => pr.Points).ToList();
+            int i = 1;
+            foreach (PositionResponse item in list)
+            {
+                item.Ranking = i;
+                i++;
+            }
+
+            return Ok(list);
+        }
+
+
+        [HttpPost]
+        public async Task<IActionResult> PostForecast([FromBody] ForecastRequest request)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            CultureInfo cultureInfo = new CultureInfo(request.CultureInfo);
+            Resource.Culture = cultureInfo;
+
+            MatchEntity matchEntity = await _context.Matches.FindAsync(request.MatchId);
+            if (matchEntity == null)
+            {
+                return BadRequest(Resource.MatchDoesntExists);
+            }
+
+            if (matchEntity.IsClosed)
+            {
+                return BadRequest(Resource.MatchAlreadyClosed);
+            }
+
+            UserEntity userEntity = await _userHelper.GetUserAsync(request.UserId);
+            if (userEntity == null)
+            {
+                return BadRequest(Resource.UserDoesntExists);
+            }
+
+            if (matchEntity.Date <= DateTime.UtcNow)
+            {
+                return BadRequest(Resource.MatchAlreadyStarts);
+            }
+
+            ForecastEntity predictionEntity = await _context.Forecasts
+                .FirstOrDefaultAsync(p => p.User.Id == request.UserId.ToString() && p.Match.Id == request.MatchId);
+
+            if (predictionEntity == null)
+            {
+                predictionEntity = new ForecastEntity
+                {
+                    GoalsLocal = request.GoalsLocal,
+                    GoalsVisitor = request.GoalsVisitor,
+                    Match = matchEntity,
+                    User = userEntity
+                };
+
+                _context.Forecasts.Add(predictionEntity);
+            }
+            else
+            {
+                predictionEntity.GoalsLocal = request.GoalsLocal;
+                predictionEntity.GoalsVisitor = request.GoalsVisitor;
+                _context.Forecasts.Update(predictionEntity);
+            }
+
+            await _context.SaveChangesAsync();
+            return NoContent();
+        }
+
 
         [HttpPost]
         [Route("GetForecastsForUser")]
