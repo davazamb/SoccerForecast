@@ -24,7 +24,6 @@
                     <RelativeLayout.GestureRecognizers>
                         <TapGestureRecognizer Command="{Binding ModifyUserCommand}"/>
                     </RelativeLayout.GestureRecognizers>
-
                     <Image x:Name="Logo" HorizontalOptions="Center"
                            RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToParent,Property=X,Factor=1,Constant=60}"
                            HeightRequest="150"

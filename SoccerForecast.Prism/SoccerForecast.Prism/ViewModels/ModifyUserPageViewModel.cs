@@ -9,6 +9,7 @@ using SoccerForecast.Common.Helpers;
 using SoccerForecast.Common.Models;
 using SoccerForecast.Common.Services;
 using SoccerForecast.Prism.Helpers;
+using SoccerForecast.Prism.Views;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -32,7 +33,7 @@ namespace SoccerForecast.Prism.ViewModels
         private DelegateCommand _saveCommand;
         private readonly INavigationService _navigationService;
         private readonly IFilesHelper _filesHelper;
-
+        private DelegateCommand _changePasswordCommand;
 
         public ModifyUserPageViewModel(INavigationService navigationService,
             IApiService apiService,
@@ -49,7 +50,7 @@ namespace SoccerForecast.Prism.ViewModels
             Image = User.PictureFullPath;
             LoadTeamsAsync();
         }
-
+        public DelegateCommand ChangePasswordCommand => _changePasswordCommand ?? (_changePasswordCommand = new DelegateCommand(ChangePasswordAsync));
         public DelegateCommand ChangeImageCommand => _changeImageCommand ?? (_changeImageCommand = new DelegateCommand(ChangeImageAsync));
 
         public DelegateCommand SaveCommand => _saveCommand ?? (_saveCommand = new DelegateCommand(SaveAsync));
@@ -88,6 +89,10 @@ namespace SoccerForecast.Prism.ViewModels
         {
             get => _isEnabled;
             set => SetProperty(ref _isEnabled, value);
+        }
+        private async void ChangePasswordAsync()
+        {
+            await _navigationService.NavigateAsync(nameof(ChangePasswordPage));
         }
 
         private async void SaveAsync()

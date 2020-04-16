@@ -16,20 +16,20 @@ namespace SoccerForecast.Prism.ViewModels
 {
     public class SoccerForecastMasterDetailPageViewModel : ViewModelBase
     {
-        private readonly INavigationService _navigationService; 
-        private UserResponse _user;
-        private DelegateCommand _modifyUserCommand;
+        private readonly INavigationService _navigationService;
         private readonly IApiService _apiService;
         private static SoccerForecastMasterDetailPageViewModel _instance;
+        private UserResponse _user;
+        private DelegateCommand _modifyUserCommand;
 
         public SoccerForecastMasterDetailPageViewModel(INavigationService navigationService, IApiService apiService)
             : base(navigationService)
         {
             _instance = this;
-            _apiService = apiService;
             _navigationService = navigationService;
-            LoadMenus();
+            _apiService = apiService;
             LoadUser();
+            LoadMenus();
         }
         public DelegateCommand ModifyUserCommand => _modifyUserCommand ?? (_modifyUserCommand = new DelegateCommand(ModifyUserAsync));
         public ObservableCollection<MenuItemViewModel> Menus { get; set; }
@@ -71,7 +71,7 @@ namespace SoccerForecast.Prism.ViewModels
 
         private async void ModifyUserAsync()
         {
-            await _navigationService.NavigateAsync($"/SoccerMasterDetailPage/NavigationPage/{nameof(ModifyUserPage)}");
+            await _navigationService.NavigateAsync($"/SoccerForecastDetailPage/NavigationPage/{nameof(ModifyUserPage)}");
         }
 
         private void LoadUser()
