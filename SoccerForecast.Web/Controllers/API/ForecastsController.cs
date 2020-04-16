@@ -71,7 +71,7 @@ namespace SoccerForecast.Web.Controllers.API
             {
                 if (ForecastEntity.Match.Group.Tournament.Id == request.TournamentId)
                 {
-                    forecastResponses.Add(_converterHelper.ToPredictionResponse(ForecastEntity));
+                    forecastResponses.Add(_converterHelper.ToForecastResponse(ForecastEntity));
                 }
             }
 
@@ -83,8 +83,8 @@ namespace SoccerForecast.Web.Controllers.API
                 .ToListAsync();
             foreach (MatchEntity matchEntity in matches)
             {
-                ForecastResponse predictionResponse = forecastResponses.FirstOrDefault(pr => pr.Match.Id == matchEntity.Id);
-                if (predictionResponse == null)
+                ForecastResponse ForecastResponse = forecastResponses.FirstOrDefault(pr => pr.Match.Id == matchEntity.Id);
+                if (ForecastResponse == null)
                 {
                     forecastResponses.Add(new ForecastResponse
                     {

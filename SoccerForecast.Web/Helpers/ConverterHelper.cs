@@ -20,7 +20,7 @@ namespace SoccerForecast.Web.Helpers
             _context = context;
             _combosHelper = combosHelper;
         }
-        public ForecastResponse ToPredictionResponse(ForecastEntity ForecastEntity)
+        public ForecastResponse ToForecastResponse(ForecastEntity ForecastEntity)
         {
             return new ForecastResponse
             {
@@ -245,7 +245,7 @@ namespace SoccerForecast.Web.Helpers
             return list;
         }
 
-        private UserResponse ToUserResponse(UserEntity user)
+        public UserResponse ToUserResponse(UserEntity user)
         {
             if (user == null)
             {

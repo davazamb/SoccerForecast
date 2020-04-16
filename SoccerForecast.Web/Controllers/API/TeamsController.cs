@@ -12,7 +12,7 @@ using SoccerForecast.Web.Data.Entities;
 
 namespace SoccerForecast.Web.Controllers.API
 {
-    [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
+    //[Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
     [Route("api/[controller]")]
     [ApiController]
     public class TeamsController : ControllerBase

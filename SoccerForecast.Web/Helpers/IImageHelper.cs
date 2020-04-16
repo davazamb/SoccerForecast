@@ -8,6 +8,7 @@ namespace SoccerForecast.Web.Helpers
 {
     public interface IImageHelper
     {
+        string UploadImage(byte[] pictureArray, string folder);
         Task<string> UploadImageAsync(IFormFile imageFile, string folder);
     }
 

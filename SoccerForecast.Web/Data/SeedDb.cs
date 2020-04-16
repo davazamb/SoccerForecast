@@ -28,20 +28,27 @@ namespace SoccerForecast.Web.Data
        public async Task SeedAsync()
         {
             await _context.Database.EnsureCreatedAsync();
+            await CheckRolesAsync();
             await CheckTeamsAsync();
             await CheckTournamentsAsync();
-            await CheckRolesAsync();
+            await CheckUserAsync("1010", "David", "Zambrano", "david.zambrano10@gmail.com", "990512688", "El Molino", UserType.Admin);
+            await CheckUserAsync("2020", "Ali", "Zambrano", "davazamb10@hotmail.com", "990512688", "El Molino", UserType.User);
+            await CheckForecastsAsync();
+            await CheckUsersAsync();
 
+        }
+
+        private async Task CheckUsersAsync()
+        {
+            for (int i = 2; i <= 50; i++)
+            {
+                await CheckUserAsync($"100{i}", "User", $"{i}", $"syropos{i}@yopmail.com", "990512688", $"el molino {i}", UserType.User);
+            }
         }
         private async Task CheckRolesAsync()
         {
             await _userHelper.CheckRoleAsync(UserType.Admin.ToString());
             await _userHelper.CheckRoleAsync(UserType.User.ToString());
-
-            await CheckUserAsync("1010", "David", "Zambrano", "david.zambrano10@gmail.com", "817", "El Molino", UserType.Admin);
-            await CheckUserAsync("2020", "Ali", "Zambrano", "davazamb10@hotmail.com", "817", "El Molino", UserType.User);
-            await CheckForecastsAsync();
-
         }
 
         private async Task CheckForecastsAsync()
@@ -52,7 +59,7 @@ namespace SoccerForecast.Web.Data
                 {
                     if (user.UserType == UserType.User)
                     {
-                        AddPrediction(user);
+                        AddForecast(user);
                     }
                 }
 
@@ -60,7 +67,7 @@ namespace SoccerForecast.Web.Data
             }
         }
 
-        private void AddPrediction(UserEntity user)
+        private void AddForecast(UserEntity user)
         {
             var random = new Random();
             foreach (var match in _context.Matches)
@@ -103,9 +110,13 @@ namespace SoccerForecast.Web.Data
 
                             await _userHelper.AddUserAsync(user, "123456");
                             await _userHelper.AddUserToRoleAsync(user, userType.ToString());
+
+                            var token = await _userHelper.GenerateEmailConfirmationTokenAsync(user);
+                            await _userHelper.ConfirmEmailAsync(user, token);
+
                         }
 
-                        return user;
+            return user;
         }
 
 
