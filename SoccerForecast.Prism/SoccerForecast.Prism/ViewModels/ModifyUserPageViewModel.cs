@@ -1,21 +1,18 @@
-﻿
-using Newtonsoft.Json;
+﻿using Newtonsoft.Json;
 using Plugin.Media;
 using Plugin.Media.Abstractions;
 using Prism.Commands;
-using Prism.Mvvm;
 using Prism.Navigation;
+using System.Threading.Tasks;
 using SoccerForecast.Common.Helpers;
 using SoccerForecast.Common.Models;
-using SoccerForecast.Common.Services;
 using SoccerForecast.Prism.Helpers;
-using SoccerForecast.Prism.Views;
-using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Linq;
-using System.Threading.Tasks;
 using Xamarin.Forms;
+using System.Collections.ObjectModel;
+using SoccerForecast.Common.Services;
+using System.Collections.Generic;
+using System.Linq;
+using SoccerForecast.Prism.Views;
 
 namespace SoccerForecast.Prism.ViewModels
 {

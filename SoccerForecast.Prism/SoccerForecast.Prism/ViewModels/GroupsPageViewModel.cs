@@ -34,11 +34,8 @@ namespace SoccerForecast.Prism.ViewModels
         {
             base.OnNavigatedTo(parameters);
 
-            if (parameters.ContainsKey("tournament"))
-            {
-                _tournament = parameters.GetValue<TournamentResponse>("tournament");
-                Groups = _transformHelper.ToGroups(_tournament.Groups);
-            }
+            _tournament = parameters.GetValue<TournamentResponse>("tournament");
+            Groups = _transformHelper.ToGroups(_tournament.Groups);
         }
 
     }

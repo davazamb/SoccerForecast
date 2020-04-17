@@ -3,9 +3,9 @@ using Xamarin.Forms;
 
 namespace SoccerForecast.Prism.Views
 {
-    public partial class TournamentTabbedPage : TabbedPage, INavigatedAware
+    public partial class ForecastsTabbedPage : TabbedPage, INavigatedAware
     {
-        public TournamentTabbedPage()
+        public ForecastsTabbedPage()
         {
             InitializeComponent();
         }
@@ -28,6 +28,8 @@ namespace SoccerForecast.Prism.Views
                     (page?.BindingContext as INavigationAware)?.OnNavigatedTo(parameters);
                 }
             }
+
         }
     }
 }
+

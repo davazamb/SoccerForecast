@@ -28,8 +28,14 @@ namespace SoccerForecast.Prism.ViewModels
                 Settings.User = null;
                 Settings.Token = null;
             }
-
-            await _navigationService.NavigateAsync($"/SoccerForecastMasterDetailPage/NavigationPage/{PageName}");
+            if (IsLoginRequired && !Settings.IsLogin)
+            {
+                await _navigationService.NavigateAsync($"/SoccerForecastMasterDetailPage/NavigationPage/LoginPage");
+            }
+            else
+            {
+                await _navigationService.NavigateAsync($"/SoccerForecastMasterDetailPage/NavigationPage/{PageName}");
+            }
         }
     }
 

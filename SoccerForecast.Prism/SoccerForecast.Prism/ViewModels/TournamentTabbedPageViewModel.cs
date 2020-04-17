@@ -21,12 +21,13 @@ namespace SoccerForecast.Prism.ViewModels
         public override void OnNavigatedTo(INavigationParameters parameters)
         {
             base.OnNavigatedTo(parameters);
-
-            if (parameters.ContainsKey("tournament"))
-            {
-                _tournament = parameters.GetValue<TournamentResponse>("tournament");
-                Title = _tournament.Name;
-            }
+            _tournament = parameters.GetValue<TournamentResponse>("tournament");
+            Title = _tournament.Name;
+            //if (parameters.ContainsKey("tournament"))
+            //{
+            //    _tournament = parameters.GetValue<TournamentResponse>("tournament");
+            //    Title = _tournament.Name;
+            //}
         }
 
     }

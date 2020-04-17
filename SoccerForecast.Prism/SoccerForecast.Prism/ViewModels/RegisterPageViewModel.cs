@@ -1,13 +1,11 @@
-﻿//using Plugin.Media;
-//using Plugin.Media.Abstractions;
+﻿using Plugin.Media;
+using Plugin.Media.Abstractions;
 using Prism.Commands;
-using Prism.Mvvm;
 using Prism.Navigation;
 using SoccerForecast.Common.Helpers;
 using SoccerForecast.Common.Models;
 using SoccerForecast.Common.Services;
 using SoccerForecast.Prism.Helpers;
-using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
@@ -28,9 +26,9 @@ namespace SoccerForecast.Prism.ViewModels
         private ObservableCollection<TeamResponse> _teams;
         private bool _isRunning;
         private bool _isEnabled;
-        private DelegateCommand _registerCommand;
-        private Plugin.Media.Abstractions.MediaFile _file;
+        private MediaFile _file;
         private DelegateCommand _changeImageCommand;
+        private DelegateCommand _registerCommand;
 
 
         public RegisterPageViewModel(
@@ -50,54 +48,9 @@ namespace SoccerForecast.Prism.ViewModels
             LoadTeamsAsync();
         }
 
-
-        public DelegateCommand RegisterCommand => _registerCommand ?? (_registerCommand = new DelegateCommand(RegisterAsync));
         public DelegateCommand ChangeImageCommand => _changeImageCommand ?? (_changeImageCommand = new DelegateCommand(ChangeImageAsync));
 
-
-        private async void ChangeImageAsync()
-        {
-            await Plugin.Media.CrossMedia.Current.Initialize();
-
-            string source = await Application.Current.MainPage.DisplayActionSheet(
-                Languages.PictureSource,
-                Languages.Cancel,
-                null,
-                Languages.FromGallery,
-                Languages.FromCamera);
-
-            if (source == Languages.Cancel)
-            {
-                _file = null;
-                return;
-            }
-
-            if (source == Languages.FromCamera)
-            {
-                _file = await Plugin.Media.CrossMedia.Current.TakePhotoAsync(
-                    new Plugin.Media.Abstractions.StoreCameraMediaOptions
-                    {
-                        Directory = "Sample",
-                        Name = "test.jpg",
-                        PhotoSize = Plugin.Media.Abstractions.PhotoSize.Small,
-                    }
-                );
-            }
-            else
-            {
-                _file = await Plugin.Media.CrossMedia.Current.PickPhotoAsync();
-            }
-
-            if (_file != null)
-            {
-                Image = ImageSource.FromStream(() =>
-                {
-                    System.IO.Stream stream = _file.GetStream();
-                    return stream;
-                });
-            }
-        }
-
+        public DelegateCommand RegisterCommand => _registerCommand ?? (_registerCommand = new DelegateCommand(RegisterAsync));
 
         public ImageSource Image
         {
@@ -135,6 +88,49 @@ namespace SoccerForecast.Prism.ViewModels
             set => SetProperty(ref _isEnabled, value);
         }
 
+        private async void ChangeImageAsync()
+        {
+            await CrossMedia.Current.Initialize();
+
+            string source = await Application.Current.MainPage.DisplayActionSheet(
+                Languages.PictureSource,
+                Languages.Cancel,
+                null,
+                Languages.FromGallery,
+                Languages.FromCamera);
+
+            if (source == Languages.Cancel)
+            {
+                _file = null;
+                return;
+            }
+
+            if (source == Languages.FromCamera)
+            {
+                _file = await CrossMedia.Current.TakePhotoAsync(
+                    new StoreCameraMediaOptions
+                    {
+                        Directory = "Sample",
+                        Name = "test.jpg",
+                        PhotoSize = PhotoSize.Small,
+                    }
+                );
+            }
+            else
+            {
+                _file = await CrossMedia.Current.PickPhotoAsync();
+            }
+
+            if (_file != null)
+            {
+                Image = ImageSource.FromStream(() =>
+                {
+                    System.IO.Stream stream = _file.GetStream();
+                    return stream;
+                });
+            }
+        }
+
         private async void RegisterAsync()
         {
             bool isValid = await ValidateDataAsync();
@@ -146,20 +142,18 @@ namespace SoccerForecast.Prism.ViewModels
             IsRunning = true;
             IsEnabled = false;
             string url = App.Current.Resources["UrlAPI"].ToString();
-            bool connection = await _apiService.CheckConnectionAsync(url);
-            if (!connection)
-            {
-                IsRunning = false;
-                IsEnabled = true;
-                await App.Current.MainPage.DisplayAlert(Languages.Error, Languages.ConnectionError, Languages.Accept);
-                return;
-            }
+            //if (!_apiService.CheckConnection())
+            //{
+            //    IsRunning = false;
+            //    IsEnabled = true;
+            //    await App.Current.MainPage.DisplayAlert(Languages.Error, Languages.ConnectionError, Languages.Accept);
+            //    return;
+            //}
 
             byte[] imageArray = null;
             if (_file != null)
             {
                 imageArray = _filesHelper.ReadFully(_file.GetStream());
-
             }
 
             User.TeamId = Team.Id;
@@ -178,11 +172,9 @@ namespace SoccerForecast.Prism.ViewModels
 
             await App.Current.MainPage.DisplayAlert(Languages.Ok, response.Message, Languages.Accept);
             await _navigationService.GoBackAsync();
-        
+        }
 
-    }
-
-    private async Task<bool> ValidateDataAsync()
+        private async Task<bool> ValidateDataAsync()
         {
             if (string.IsNullOrEmpty(User.Document))
             {
@@ -249,21 +241,14 @@ namespace SoccerForecast.Prism.ViewModels
 
         private async void LoadTeamsAsync()
         {
-            IsRunning = true;
-            IsEnabled = false;
             string url = App.Current.Resources["UrlAPI"].ToString();
-            bool connection = await _apiService.CheckConnectionAsync(url);
-            if (!connection)
-            {
-                IsRunning = false;
-                IsEnabled = true;
-                await App.Current.MainPage.DisplayAlert(Languages.Error, Languages.ConnectionError, Languages.Accept);
-                return;
-            }
+            //if (!_apiService.CheckConnection())
+            //{
+            //    await App.Current.MainPage.DisplayAlert(Languages.Error, Languages.ConnectionError, Languages.Accept);
+            //    return;
+            //}
 
             Response response = await _apiService.GetListAsync<TeamResponse>(url, "/api", "/Teams");
-            IsRunning = false;
-            IsEnabled = true;
 
             if (!response.IsSuccess)
             {

@@ -96,19 +96,25 @@ namespace SoccerForecast.Prism.ViewModels
                 {
                     Icon = "forecast",
                     PageName = "MyForecastsPage",
-                    Title = Languages.MyForecasts
+                    Title = Languages.MyForecasts,
+                    IsLoginRequired = true
+
                 },
                 new Menu
                 {
                     Icon = "medal",
                     PageName = "MyPositionsPage",
-                    Title = Languages.MyPositions
+                    Title = Languages.MyPositions,
+                    IsLoginRequired = true
+
                 },
                 new Menu
                 {
                     Icon = "user",
                     PageName = "ModifyUserPage",
-                    Title = Languages.ModifyUser
+                    Title = Languages.ModifyUser,
+                    IsLoginRequired = true
+
                 },
                 new Menu
                 {
@@ -124,7 +130,8 @@ namespace SoccerForecast.Prism.ViewModels
                 {
                     Icon = m.Icon,
                     PageName = m.PageName,
-                    Title = m.Title
+                    Title = m.Title,
+                    IsLoginRequired = m.IsLoginRequired
                 }).ToList());
         }
     }

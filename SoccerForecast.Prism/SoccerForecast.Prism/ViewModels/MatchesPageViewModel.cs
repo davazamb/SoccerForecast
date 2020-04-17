@@ -23,9 +23,11 @@ namespace SoccerForecast.Prism.ViewModels
             LoadMatches();
         }
 
+
+
         private void LoadMatches()
         {
-            _tournament = JsonConvert.DeserializeObject<TournamentResponse>(Settings.Tournament);
+            //_tournament = JsonConvert.DeserializeObject<TournamentResponse>(Settings.Tournament);
             List<MatchResponse> matches = new List<MatchResponse>();
             foreach (GroupResponse group in _tournament.Groups)
             {
@@ -47,14 +49,17 @@ namespace SoccerForecast.Prism.ViewModels
             base.OnNavigatedTo(parameters);
 
             _tournament = parameters.GetValue<TournamentResponse>("tournament");
-            List<MatchResponse> matches = new List<MatchResponse>();
-            foreach (GroupResponse group in _tournament.Groups)
-            {
-                matches.AddRange(group.Matches);
-            }
+            LoadMatches();
+            //List<MatchResponse> matches = new List<MatchResponse>();
+            //foreach (GroupResponse group in _tournament.Groups)
+            //{
+            //    matches.AddRange(group.Matches);
+            //}
 
-            Matches = matches.Where(m => !m.IsClosed).OrderBy(m => m.Date).ToList();
+            //Matches = matches.Where(m => !m.IsClosed).OrderBy(m => m.Date).ToList();
         }
+
+ 
     }
 
 }

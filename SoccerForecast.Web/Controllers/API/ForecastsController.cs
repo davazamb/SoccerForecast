@@ -153,12 +153,12 @@ namespace SoccerForecast.Web.Controllers.API
                 return BadRequest(Resource.MatchAlreadyStarts);
             }
 
-            ForecastEntity predictionEntity = await _context.Forecasts
+            ForecastEntity forecastEntity = await _context.Forecasts
                 .FirstOrDefaultAsync(p => p.User.Id == request.UserId.ToString() && p.Match.Id == request.MatchId);
 
-            if (predictionEntity == null)
+            if (forecastEntity == null)
             {
-                predictionEntity = new ForecastEntity
+                forecastEntity = new ForecastEntity
                 {
                     GoalsLocal = request.GoalsLocal,
                     GoalsVisitor = request.GoalsVisitor,
@@ -166,13 +166,13 @@ namespace SoccerForecast.Web.Controllers.API
                     User = userEntity
                 };
 
-                _context.Forecasts.Add(predictionEntity);
+                _context.Forecasts.Add(forecastEntity);
             }
             else
             {
-                predictionEntity.GoalsLocal = request.GoalsLocal;
-                predictionEntity.GoalsVisitor = request.GoalsVisitor;
-                _context.Forecasts.Update(predictionEntity);
+                forecastEntity.GoalsLocal = request.GoalsLocal;
+                forecastEntity.GoalsVisitor = request.GoalsVisitor;
+                _context.Forecasts.Update(forecastEntity);
             }
 
             await _context.SaveChangesAsync();

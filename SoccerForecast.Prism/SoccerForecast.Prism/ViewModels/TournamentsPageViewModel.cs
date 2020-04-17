@@ -23,7 +23,7 @@ namespace SoccerForecast.Prism.ViewModels
         {
             _navigationService = navigationService;
             _apiService = apiService;
-            Title = Languages.Tournaments;
+            Title = Languages.SoccerForescast;
             LoadTournamentsAsync();
         }
 
@@ -63,8 +63,8 @@ namespace SoccerForecast.Prism.ViewModels
                 await App.Current.MainPage.DisplayAlert(Languages.Error, response.Message, Languages.Accept);              
             }
 
-            List<TournamentResponse> list = (List<TournamentResponse>)response.Result;
-            Tournaments = list.Select(t => new TournamentItemViewModel(_navigationService)
+            List<TournamentResponse> tournaments = (List<TournamentResponse>)response.Result;
+            Tournaments = tournaments.Select(t => new TournamentItemViewModel(_navigationService)
             {
                 EndDate = t.EndDate,
                 Groups = t.Groups,

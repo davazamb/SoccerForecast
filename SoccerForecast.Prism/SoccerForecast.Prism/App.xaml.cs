@@ -49,6 +49,9 @@ namespace SoccerForecast.Prism
             containerRegistry.RegisterForNavigation<RegisterPage, RegisterPageViewModel>();
             containerRegistry.RegisterForNavigation<RememberPasswordPage, RememberPasswordPageViewModel>();
             containerRegistry.RegisterForNavigation<ChangePasswordPage, ChangePasswordPageViewModel>();
+            containerRegistry.RegisterForNavigation<ForecastsForTournamentPage, ForecastsForTournamentPageViewModel>();
+            containerRegistry.RegisterForNavigation<ClosedForecastsForTournamentPage, ClosedForecastsForTournamentPageViewModel>();
+            containerRegistry.RegisterForNavigation<ForecastsTabbedPage, ForecastsTabbedPageViewModel>();
         }
     }
 }
