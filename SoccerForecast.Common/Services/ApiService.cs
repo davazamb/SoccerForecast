@@ -1,5 +1,4 @@
 ﻿using Newtonsoft.Json;
-using Plugin.Connectivity;
 using SoccerForecast.Common.Models;
 using System;
 using System.Collections.Generic;
@@ -7,6 +6,7 @@ using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Text;
 using System.Threading.Tasks;
+using Xamarin.Essentials;
 
 namespace SoccerForecast.Common.Services
 {
@@ -314,14 +314,10 @@ namespace SoccerForecast.Common.Services
         }
 
 
-        public async Task<bool> CheckConnectionAsync(string url)
+        public bool CheckConnection()
         {
-            if (!CrossConnectivity.Current.IsConnected)
-            {
-                return false;
-            }
+            return Connectivity.NetworkAccess == NetworkAccess.Internet;
 
-            return await CrossConnectivity.Current.IsRemoteReachable(url);
         }
 
         public async Task<Response> GetListAsync<T>(
