@@ -82,6 +82,7 @@ namespace SoccerForecast.Web
             services.AddScoped<IConverterHelper, ConverterHelper>();
             services.AddScoped<IMailHelper, MailHelper>(); 
             services.AddScoped<IMatchHelper, MatchHelper>();
+            services.AddScoped<IBlobHelper, BlobHelper>();
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
         }

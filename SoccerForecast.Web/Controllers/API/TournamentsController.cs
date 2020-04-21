@@ -13,8 +13,9 @@ using System.Threading.Tasks;
 namespace SoccerForecast.Web.Controllers.API
 {
     //[Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
-    [Route("api/[controller]")]
+
     [ApiController]
+    [Route("api/[controller]")]
     public class TournamentsController : ControllerBase
     {
         private readonly DataContext _context;

@@ -41,11 +41,9 @@
             </dl>
         </div>
         <div class="col-md-4">
-            @if (!string.IsNullOrEmpty(Model.Tournament.LogoPath))
-            {
-                <img src="@Url.Content(Model.Tournament.LogoPath)" alt="Image" style="width:150px;height:150px;max-width: 100%; height: auto;" />
-            }
+            <img src="@Model.Tournament.LogoFullPath" style="width:150px;height:150px;max-width:200%; height: auto;" />
         </div>
+
     </div>
 </div>
 <div>
@@ -107,45 +105,43 @@
                           .ThenByDescending(g => g.GoalDifference)
                           .ThenByDescending(g => g.GoalsFor))
                             {
-                                <tr>
-                                    <td>
-                                        @if (!string.IsNullOrEmpty(item.Team.LogoPath))
-                                        {
-                                            <img src="@Url.Content(item.Team.LogoPath)" alt="Image" style="width:50px;height:50px;max-width: 100%; height: auto;" />
-                                        }
-                                    </td>
-                                    <td>
-                                        @Html.DisplayFor(modelItem => item.Team.Name)
-                                    </td>
-                                    <td>
-                                        @Html.DisplayFor(modelItem => item.MatchesPlayed)
-                                    </td>
-                                    <td>
-                                        @Html.DisplayFor(modelItem => item.MatchesWon)
-                                    </td>
-                                    <td>
-                                        @Html.DisplayFor(modelItem => item.MatchesTied)
-                                    </td>
-                                    <td>
-                                        @Html.DisplayFor(modelItem => item.MatchesLost)
-                                    </td>
-                                    <td>
-                                        @Html.DisplayFor(modelItem => item.Points)
-                                    </td>
-                                    <td>
-                                        @Html.DisplayFor(modelItem => item.GoalsFor)
-                                    </td>
-                                    <td>
-                                        @Html.DisplayFor(modelItem => item.GoalsAgainst)
-                                    </td>
-                                    <td>
-                                        @Html.DisplayFor(modelItem => item.GoalDifference)
-                                    </td>
-                                    <td>
-                                        <a asp-action="EditGroupDetail" asp-route-id="@item.Id" class="btn btn-warning"><i class="glyphicon glyphicon-pencil"></i></a>
-                                        <button data-id="@item.Id" class="btn btn-danger deleteItem" data-toggle="modal" data-target="#deleteDialog"><i class="glyphicon glyphicon-trash"></i></button>
-                                    </td>
-                                </tr>
+                            <tr>
+                                <td>
+                                    <img src="@item.Team.LogoFullPath" style="width:50px;height:50px;max-width: 100%; height: auto;" />
+                                </td>
+
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Team.Name)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.MatchesPlayed)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.MatchesWon)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.MatchesTied)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.MatchesLost)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Points)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.GoalsFor)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.GoalsAgainst)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.GoalDifference)
+                                </td>
+                                <td>
+                                    <a asp-action="EditGroupDetail" asp-route-id="@item.Id" class="btn btn-warning"><i class="glyphicon glyphicon-pencil"></i></a>
+                                    <button data-id="@item.Id" class="btn btn-danger deleteItem" data-toggle="modal" data-target="#deleteDialog"><i class="glyphicon glyphicon-trash"></i></button>
+                                </td>
+                            </tr>
                             }
                         </tbody>
                     </table>
@@ -193,37 +189,34 @@
                             @foreach (var item in Model.GroupDetails.FirstOrDefault().Group.Matches
                           .OrderBy(m => m.Date))
                             {
-                                <tr>
-                                    <td>
-                                        @Html.DisplayFor(modelItem => item.DateLocal)
-                                    </td>
-                                    <td>
-                                        @if (!string.IsNullOrEmpty(item.Local.LogoPath))
-                                        {
-                                            <img src="@Url.Content(item.Local.LogoPath)" alt="Image" style="width:50px;height:50px;max-width: 100%; height: auto;" />
-                                        }
-                                    </td>
-                                    <td>
-                                        @Html.DisplayFor(modelItem => item.GoalsLocal)
-                                    </td>
-                                    <td>
-                                        @Html.DisplayFor(modelItem => item.GoalsVisitor)
-                                    </td>
-                                    <td>
-                                        @if (!string.IsNullOrEmpty(item.Visitor.LogoPath))
-                                        {
-                                            <img src="@Url.Content(item.Visitor.LogoPath)" alt="Image" style="width:50px;height:50px;max-width: 100%; height: auto;" />
-                                        }
-                                    </td>
-                                    <td>
-                                        @Html.DisplayFor(modelItem => item.IsClosed)
-                                    </td>
-                                    <td>
-                                        <a asp-action="EditMatch" asp-route-id="@item.Id" class="btn btn-warning"><i class="glyphicon glyphicon-pencil"></i></a>
-                                        <a asp-action="CloseMatch" asp-route-id="@item.Id" class="btn btn-info"><i class="glyphicon glyphicon-check"></i></a>
-                                        <button data-id="@item.Id" class="btn btn-danger deleteItemMath" data-toggle="modal" data-target="#deleteDialog"><i class="glyphicon glyphicon-trash"></i></button>
-                                    </td>
-                                </tr>
+                            <tr>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.DateLocal)
+                                </td>
+                                <td>
+                                    <img src="@item.Local.LogoFullPath" style="width:50px;height:50px;max-width: 100%; height: auto;" />
+                                </td>
+
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.GoalsLocal)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.GoalsVisitor)
+                                </td>
+                                <td>
+                                    <img src="@item.Visitor.LogoFullPath" style="width:50px;height:50px;max-width: 100%; height: auto;" />
+
+                                </td>
+
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.IsClosed)
+                                </td>
+                                <td>
+                                    <a asp-action="EditMatch" asp-route-id="@item.Id" class="btn btn-warning"><i class="glyphicon glyphicon-pencil"></i></a>
+                                    <a asp-action="CloseMatch" asp-route-id="@item.Id" class="btn btn-info"><i class="glyphicon glyphicon-check"></i></a>
+                                    <button data-id="@item.Id" class="btn btn-danger deleteItemMath" data-toggle="modal" data-target="#deleteDialog"><i class="glyphicon glyphicon-trash"></i></button>
+                                </td>
+                            </tr>
                             }
                         </tbody>
                     </table>

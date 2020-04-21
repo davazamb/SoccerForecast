@@ -88,7 +88,7 @@
                                                         RetryCount= "3"
                                                         RetryDelay= "600"
                                                         Source="{Binding Team.LogoFullPath}" 
-                                                        WidthRequest="45"/>
+                                                        WidthRequest="40"/>
                             <Label Grid.Column="1"
                                    FontAttributes="Bold"
                                    Text="{Binding Team.Name}" 

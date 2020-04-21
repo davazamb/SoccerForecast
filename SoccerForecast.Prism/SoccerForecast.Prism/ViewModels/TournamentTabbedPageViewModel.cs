@@ -15,7 +15,7 @@ namespace SoccerForecast.Prism.ViewModels
 
         public TournamentTabbedPageViewModel(INavigationService navigationService) : base(navigationService)
         {
-            Title = Languages.SoccerForescast;
+            Title = "SoccerForecast";
         }
 
         public override void OnNavigatedTo(INavigationParameters parameters)

@@ -46,6 +46,12 @@ namespace SoccerForecast.Web.Models
         public int TeamId { get; set; }
 
         public IEnumerable<SelectListItem> Teams { get; set; }
+
+        [Display(Name = "Picture")]
+        public string PictureFullPath => string.IsNullOrEmpty(PicturePath)
+         ? "https://soccerforecastweb.azurewebsites.net/images/noimage.png"
+     : $"https://soccerforecaststorageapp.blob.core.windows.net/users/{PicturePath}";
+
     }
 
 }

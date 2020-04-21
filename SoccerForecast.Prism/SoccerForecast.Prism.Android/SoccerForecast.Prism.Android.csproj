@@ -49,23 +49,23 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Mono.Android" />
+    <Reference Include="Plugin.CurrentActivity">
+      <HintPath>..\..\..\..\..\Users\davaz\.nuget\packages\plugin.currentactivity\2.1.0.2\lib\monoandroid44\Plugin.CurrentActivity.dll</HintPath>
+    </Reference>
+    <Reference Include="Plugin.Permissions">
+      <HintPath>..\..\..\..\..\Users\davaz\.nuget\packages\plugin.permissions\3.0.0.12\lib\monoandroid71\Plugin.Permissions.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="Plugin.CurrentActivity">
-      <Version>2.1.0.4</Version>
-    </PackageReference>
-    <PackageReference Include="Plugin.Permissions">
-      <Version>6.0.1</Version>
-    </PackageReference>
     <PackageReference Include="Syncfusion.Xamarin.SfBusyIndicator">
       <Version>18.1.0.44</Version>
     </PackageReference>
     <PackageReference Include="Xam.Plugin.Media">
-      <Version>5.0.1</Version>
+      <Version>4.0.1.5</Version>
     </PackageReference>
     <PackageReference Include="Xamarin.Essentials">
       <Version>1.5.2</Version>
@@ -165,7 +165,7 @@
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
   <ProjectExtensions>
     <VisualStudio>
-      <UserProperties XamarinHotReloadDebuggerTimeoutExceptionSoccerForecastPrismAndroidHideInfoBar="True" XamarinHotReloadUnhandledDeviceExceptionSoccerForecastPrismAndroidHideInfoBar="True" />
+      <UserProperties XamarinHotReloadUnhandledDeviceExceptionSoccerForecastPrismAndroidHideInfoBar="True" XamarinHotReloadDebuggerTimeoutExceptionSoccerForecastPrismAndroidHideInfoBar="True" />
     </VisualStudio>
   </ProjectExtensions>
 </Project>

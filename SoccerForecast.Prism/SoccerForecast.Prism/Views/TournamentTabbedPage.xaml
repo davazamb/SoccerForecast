@@ -10,11 +10,10 @@
              BackgroundColor="{StaticResource ColorBackgroud}"
         	Title="{Binding Title}">
 
-    <TabbedPage.Children>
+        <TabbedPage.Children>
         <local:GroupsPage />
         <local:MatchesPage />
         <local:ClosedMatchesPage />
     </TabbedPage.Children>
-
 
 </TabbedPage>

@@ -18,25 +18,8 @@ namespace SoccerForecast.Prism.ViewModels
 
         public MatchesPageViewModel(INavigationService navigationService) : base(navigationService)
         {
-
             Title = Languages.Open;
-            LoadMatches();
         }
-
-
-
-        private void LoadMatches()
-        {
-            //_tournament = JsonConvert.DeserializeObject<TournamentResponse>(Settings.Tournament);
-            List<MatchResponse> matches = new List<MatchResponse>();
-            foreach (GroupResponse group in _tournament.Groups)
-            {
-                matches.AddRange(group.Matches);
-            }
-
-            Matches = matches.Where(m => !m.IsClosed).OrderBy(m => m.Date).ToList();
-        }
-
 
         public List<MatchResponse> Matches
         {
@@ -50,16 +33,18 @@ namespace SoccerForecast.Prism.ViewModels
 
             _tournament = parameters.GetValue<TournamentResponse>("tournament");
             LoadMatches();
-            //List<MatchResponse> matches = new List<MatchResponse>();
-            //foreach (GroupResponse group in _tournament.Groups)
-            //{
-            //    matches.AddRange(group.Matches);
-            //}
-
-            //Matches = matches.Where(m => !m.IsClosed).OrderBy(m => m.Date).ToList();
         }
 
- 
+        private void LoadMatches()
+        {
+            List<MatchResponse> matches = new List<MatchResponse>();
+            foreach (GroupResponse group in _tournament.Groups)
+            {
+                matches.AddRange(group.Matches);
+            }
+
+            Matches = matches.Where(m => !m.IsClosed).OrderBy(m => m.Date).ToList();
+        }
     }
 
 }

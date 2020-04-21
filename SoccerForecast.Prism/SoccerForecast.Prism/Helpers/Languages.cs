@@ -1,4 +1,4 @@
-﻿using SoccerForecast.Common.Interfaces;
+﻿using SoccerForecast.Prism.Interfaces;
 using SoccerForecast.Prism.Resources;
 using System.Globalization;
 using Xamarin.Forms;

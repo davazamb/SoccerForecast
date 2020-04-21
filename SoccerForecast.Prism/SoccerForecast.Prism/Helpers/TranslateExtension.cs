@@ -1,10 +1,8 @@
-﻿using SoccerForecast.Common.Interfaces;
-using System;
-using System.Collections.Generic;
+﻿using System;
 using System.Globalization;
 using System.Reflection;
 using System.Resources;
-using System.Text;
+using SoccerForecast.Prism.Interfaces;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -50,6 +48,5 @@ namespace SoccerForecast.Prism.Helpers
 
             return translation;
         }
-
     }
 }

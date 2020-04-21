@@ -43,6 +43,13 @@ namespace SoccerForecast.Web.Data.Entities
         public ICollection<ForecastEntity> Forecasts { get; set; }
         public int Points => Forecasts == null ? 0 : Forecasts.Sum(p => p.Points);
 
+        [Display(Name = "Picture")]
+        public string PictureFullPath => string.IsNullOrEmpty(PicturePath)
+        ? "https://soccerforecastweb.azurewebsites.net/images/noimage.png"
+    : $"https://soccerforecaststorageapp.blob.core.windows.net/users/{PicturePath}";
+
+
+
     }
 
 }

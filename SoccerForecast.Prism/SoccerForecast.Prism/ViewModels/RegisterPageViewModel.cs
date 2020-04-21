@@ -142,13 +142,13 @@ namespace SoccerForecast.Prism.ViewModels
             IsRunning = true;
             IsEnabled = false;
             string url = App.Current.Resources["UrlAPI"].ToString();
-            //if (!_apiService.CheckConnection())
-            //{
-            //    IsRunning = false;
-            //    IsEnabled = true;
-            //    await App.Current.MainPage.DisplayAlert(Languages.Error, Languages.ConnectionError, Languages.Accept);
-            //    return;
-            //}
+            if (!_apiService.CheckConnection())
+            {
+                IsRunning = false;
+                IsEnabled = true;
+                await App.Current.MainPage.DisplayAlert(Languages.Error, Languages.ConnectionError, Languages.Accept);
+                return;
+            }
 
             byte[] imageArray = null;
             if (_file != null)
@@ -242,11 +242,11 @@ namespace SoccerForecast.Prism.ViewModels
         private async void LoadTeamsAsync()
         {
             string url = App.Current.Resources["UrlAPI"].ToString();
-            //if (!_apiService.CheckConnection())
-            //{
-            //    await App.Current.MainPage.DisplayAlert(Languages.Error, Languages.ConnectionError, Languages.Accept);
-            //    return;
-            //}
+            if (!_apiService.CheckConnection())
+            {
+                await App.Current.MainPage.DisplayAlert(Languages.Error, Languages.ConnectionError, Languages.Accept);
+                return;
+            }
 
             Response response = await _apiService.GetListAsync<TeamResponse>(url, "/api", "/Teams");
 

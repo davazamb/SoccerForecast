@@ -15,17 +15,18 @@ namespace SoccerForecast.Web.Controllers
     public class TeamsController : Controller
     {
         private readonly DataContext _context;
-        private readonly IImageHelper _imageHelper;
         private readonly IConverterHelper _converterHelper;
+        private readonly IBlobHelper _blobHelper;
 
         public TeamsController(
             DataContext context,
-            IImageHelper imageHelper,
-            IConverterHelper converterHelper)
+            IConverterHelper converterHelper,
+             IBlobHelper blobHelper)
+
         {
             _context = context;
-            _imageHelper = imageHelper;
             _converterHelper = converterHelper;
+            _blobHelper = blobHelper;
         }
 
         // GET: Teams
@@ -71,7 +72,7 @@ namespace SoccerForecast.Web.Controllers
 
                 if (model.LogoFile != null)
                 {
-                    path = await _imageHelper.UploadImageAsync(model.LogoFile, "Teams");
+                    path = await _blobHelper.UploadBlobAsync(model.LogoFile, "teams");
                 }
 
                 TeamEntity team = _converterHelper.ToTeamEntity(model, path, true);
@@ -130,7 +131,7 @@ namespace SoccerForecast.Web.Controllers
 
                 if (model.LogoFile != null)
                 {
-                    path = await _imageHelper.UploadImageAsync(model.LogoFile, "Teams");
+                    path = await _blobHelper.UploadBlobAsync(model.LogoFile, "teams");
                 }
 
                 TeamEntity team = _converterHelper.ToTeamEntity(model, path, false);

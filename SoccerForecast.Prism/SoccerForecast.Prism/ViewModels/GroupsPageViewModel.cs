@@ -16,9 +16,8 @@ namespace SoccerForecast.Prism.ViewModels
         private TournamentResponse _tournament;
         private List<Group> _groups;
 
-        public GroupsPageViewModel(
-            INavigationService navigationService,
-            ITransformHelper transformHelper) : base(navigationService)
+        public GroupsPageViewModel(INavigationService navigationService, ITransformHelper transformHelper)
+            : base(navigationService)
         {
             _transformHelper = transformHelper;
             Title = Languages.Groups;
@@ -37,7 +36,6 @@ namespace SoccerForecast.Prism.ViewModels
             _tournament = parameters.GetValue<TournamentResponse>("tournament");
             Groups = _transformHelper.ToGroups(_tournament.Groups);
         }
-
     }
 
 }

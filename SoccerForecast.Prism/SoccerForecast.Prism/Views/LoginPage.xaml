@@ -2,17 +2,14 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:prism="http://prismlibrary.com"
-             xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core"
-             ios:Page.UseSafeArea="true"
              prism:ViewModelLocator.AutowireViewModel="True"
          	 xmlns:busyindicator="clr-namespace:Syncfusion.SfBusyIndicator.XForms;assembly=Syncfusion.SfBusyIndicator.XForms"
            	 xmlns:i18n="clr-namespace:SoccerForecast.Prism.Helpers"
              x:Class="SoccerForecast.Prism.Views.LoginPage"
              BackgroundColor="{StaticResource ColorBackgroud}"
              Title="{Binding Title}">
-    
-    
-    <AbsoluteLayout>
+
+        <AbsoluteLayout>
         <StackLayout AbsoluteLayout.LayoutBounds="0,0,1,1"
                      AbsoluteLayout.LayoutFlags="All" 
                      Padding="5">

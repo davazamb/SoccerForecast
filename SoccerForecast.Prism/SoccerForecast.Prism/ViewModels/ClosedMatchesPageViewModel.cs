@@ -30,13 +30,13 @@ namespace SoccerForecast.Prism.ViewModels
         public override void OnNavigatedTo(INavigationParameters parameters)
         {
             base.OnNavigatedTo(parameters);
+
             _tournament = parameters.GetValue<TournamentResponse>("tournament");
             LoadMatches();
-            
         }
+
         private void LoadMatches()
         {
-            //_tournament = JsonConvert.DeserializeObject<TournamentResponse>(Settings.Tournament);
             List<MatchResponse> matches = new List<MatchResponse>();
             foreach (GroupResponse group in _tournament.Groups)
             {

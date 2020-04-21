@@ -327,14 +327,14 @@ namespace SoccerForecast.Common.Services
         {
             try
             {
-                var client = new HttpClient
+                HttpClient client = new HttpClient
                 {
                     BaseAddress = new Uri(urlBase),
                 };
 
-                var url = $"{servicePrefix}{controller}";
-                var response = await client.GetAsync(url);
-                var result = await response.Content.ReadAsStringAsync();
+                string url = $"{servicePrefix}{controller}";
+                HttpResponseMessage response = await client.GetAsync(url);
+                string result = await response.Content.ReadAsStringAsync();
 
                 if (!response.IsSuccessStatusCode)
                 {
@@ -345,8 +345,7 @@ namespace SoccerForecast.Common.Services
                     };
                 }
 
-                var list = JsonConvert.DeserializeObject<List<T>>(result);
-                return new Response
+                List<T> list = JsonConvert.DeserializeObject<List<T>>(result); return new Response
                 {
                     IsSuccess = true,
                     Result = list

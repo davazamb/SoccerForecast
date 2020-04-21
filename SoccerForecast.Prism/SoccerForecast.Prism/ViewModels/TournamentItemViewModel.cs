@@ -15,14 +15,17 @@ namespace SoccerForecast.Prism.ViewModels
         private readonly INavigationService _navigationService;
         private DelegateCommand _selectTournamentCommand;
         private DelegateCommand _selectTournament2Command;
+
         public TournamentItemViewModel(INavigationService navigationService)
         {
             _navigationService = navigationService;
         }
 
-        public DelegateCommand SelectTournamentCommand => _selectTournamentCommand ?? (_selectTournamentCommand = new DelegateCommand(SelectTournamentAsync));
+        public DelegateCommand SelectTournamentCommand => _selectTournamentCommand ??
+            (_selectTournamentCommand = new DelegateCommand(SelectTournamentAsync));
 
-        public DelegateCommand SelectTournament2Command => _selectTournament2Command ?? (_selectTournament2Command = new DelegateCommand(SelectTournamentForForecastAsync));
+        public DelegateCommand SelectTournament2Command => _selectTournament2Command ??
+            (_selectTournament2Command = new DelegateCommand(SelectTournamentForForecastAsync));
 
         private async void SelectTournamentForForecastAsync()
         {

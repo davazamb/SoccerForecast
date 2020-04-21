@@ -25,7 +25,7 @@ namespace SoccerForecast.Common.Models
 
         public string PictureFullPath => string.IsNullOrEmpty(PicturePath)
     ? "https://Soccerforecastweb.azurewebsites.net//images/noimage.png"
-    : $"https://Soccerforecastweb.azurewebsites.net{PicturePath.Substring(1)}";
+    : $"https://soccerforecaststorageapp.blob.core.windows.net/users/{PicturePath}";
 
 
         public UserType UserType { get; set; }

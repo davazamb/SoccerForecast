@@ -23,7 +23,7 @@ namespace SoccerForecast.Prism.ViewModels
         {
             _navigationService = navigationService;
             _apiService = apiService;
-            Title = Languages.SoccerForescast;
+            Title = "SoccerForecast";
             LoadTournamentsAsync();
         }
 
@@ -43,38 +43,35 @@ namespace SoccerForecast.Prism.ViewModels
         private async void LoadTournamentsAsync()
         {
             IsRunning = true;
-            var url = App.Current.Resources["UrlAPI"].ToString();
+            string url = App.Current.Resources["UrlAPI"].ToString();
             if (!_apiService.CheckConnection())
             {
                 IsRunning = false;
                 await App.Current.MainPage.DisplayAlert(Languages.Error, Languages.ConnectionError, Languages.Accept);
             }
-
-            Response response = await _apiService.GetListAsync<TournamentResponse>(
-                url,
-                "/api",
-                "/Tournaments");
-            IsRunning = false;
-
-
-            if (!response.IsSuccess)
+            else
             {
-                await App.Current.MainPage.DisplayAlert(Languages.Error, response.Message, Languages.Accept);              
+                Response response = await _apiService.GetListAsync<TournamentResponse>(url, "/api", "/Tournaments");
+                IsRunning = false;
+
+                if (!response.IsSuccess)
+                {
+                    await App.Current.MainPage.DisplayAlert(Languages.Error, response.Message, Languages.Accept);
+                }
+
+                List<TournamentResponse> tournaments = (List<TournamentResponse>)response.Result;
+                Tournaments = tournaments.Select(t => new TournamentItemViewModel(_navigationService)
+                {
+                    EndDate = t.EndDate,
+                    Groups = t.Groups,
+                    Id = t.Id,
+                    IsActive = t.IsActive,
+                    LogoPath = t.LogoPath,
+                    Name = t.Name,
+                    StartDate = t.StartDate
+                }).ToList();
             }
-
-            List<TournamentResponse> tournaments = (List<TournamentResponse>)response.Result;
-            Tournaments = tournaments.Select(t => new TournamentItemViewModel(_navigationService)
-            {
-                EndDate = t.EndDate,
-                Groups = t.Groups,
-                Id = t.Id,
-                IsActive = t.IsActive,
-                LogoPath = t.LogoPath,
-                Name = t.Name,
-                StartDate = t.StartDate
-            }).ToList();
         }
     }
-
 
 }

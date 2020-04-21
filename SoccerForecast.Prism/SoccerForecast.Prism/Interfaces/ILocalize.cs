@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Text;
 
-namespace SoccerForecast.Common.Interfaces
+namespace SoccerForecast.Prism.Interfaces
 {
 	public interface ILocalize
 	{
